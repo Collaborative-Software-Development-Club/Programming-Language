@@ -1,8 +1,7 @@
 <program> ::= PROGRAM NAME LCURL <statement-seq> RCURL
 <statement-seq> ::= <statement> | <statement><statement-seq>
-<declare> ::= <declare-num> | <declare-name>
-<declare-num> ::= NUM NUMBER SEMICOLON
-<declare-name> ::= TAG NAME SEMICOLON
+<declare> ::= <declare-num>
+<declare-num> ::= NUM NAME SEMICOLON
 <statement> ::= <assign> | <if> | <loop> | <print> | <declare>
 <assign> ::= NAME ASSIGN <expression> SEMICOLON
 <print> ::= PRINT LPAREN <expression> RPAREN
