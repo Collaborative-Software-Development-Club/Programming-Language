@@ -5,7 +5,7 @@
 <statement> ::= <assign> | <if> | <loop> | <print> | <declare>
 <assign> ::= NAME ASSIGN <expression> SEMICOLON
 <print> ::= PRINT LPAREN <expression> RPAREN
-<if> ::= IF <condition> LCURL <statement-seq> RCURL | IF <condition> LCURL <statement-seq> RCURL ELSE LCURL <statement-seq> RCURL
+<if> ::a= IF <condition> LCURL <statement-seq> RCURL | IF <condition> LCURL <statement-seq> RCURL ELSE LCURL <statement-seq> RCURL
 <loop> ::= WHILE <condition> LCURL <statement-seq> RCURL
 <condition> ::= <compare> | NOT <condition> | <compare> OR <condition> | <compare> AND <condition>
 <compare> ::= <expression> EQUALS <expression> | <expression> LESS <expression>

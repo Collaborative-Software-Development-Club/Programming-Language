@@ -1,0 +1,19 @@
+PROGRAM myProgram {
+    NUM x;
+    NUM y;
+    x = 10;
+    y = x + 5;
+    
+    PRINT(x);
+    
+    IF (x < y) {
+        PRINT(y);
+    } ELSE {
+        PRINT(x);
+    }
+    
+    WHILE (x < 20) {
+        x = x + 1;
+        PRINT(x);
+    }
+}
