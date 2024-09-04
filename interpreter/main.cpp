@@ -11,8 +11,7 @@ int main(int argc, char* argv[]) {
         // write code here to ensure your tokens are being processed correctly!
 
         return 0;
-    }
-    else { // in case our code has no arguments
+    } else { // in case our code has no arguments
         cerr << "ERROR: No file argument specified!" << endl;
         return -1;
     }

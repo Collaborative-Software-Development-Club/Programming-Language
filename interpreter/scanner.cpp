@@ -27,7 +27,7 @@ class Scanner {
 
         simple current_token() {
             // all you have to do here is return the currently stored token without going to the next one
-            return EOS;
+            return curr_token;
         }
 
         void next_token() {
@@ -38,7 +38,12 @@ class Scanner {
 
         string get_name() {
             // if the current token is 'NAME', return the string value of the name, else throw an error
-            return "";
+            if (curr_token == 'NAME') {
+                return curr_name;
+            } else {
+                cout << "ERROR";
+            }
+            return 0;
         }
 
         int get_number() {
