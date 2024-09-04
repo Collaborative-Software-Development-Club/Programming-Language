@@ -27,6 +27,7 @@ class Scanner {
 
         simple current_token() {
             // all you have to do here is return the currently stored token without going to the next one
+            // if a character is an invalid symbol, throw an error
             return EOS;
         }
 
