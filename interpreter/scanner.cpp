@@ -27,12 +27,12 @@ class Scanner {
 
         simple current_token() {
             // all you have to do here is return the currently stored token without going to the next one
-            // if a character is an invalid symbol, throw an error
             return EOS;
         }
 
         void next_token() {
             // find the next available token in the scanning stream, covert it into a token, store it
+            // if a character is an invalid symbol, throw an error
             // NOTE: this will be your longest method!
         }
 
