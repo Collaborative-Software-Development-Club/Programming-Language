@@ -2,29 +2,29 @@
 #define SIMPLE_H
 
 enum simple {
-    PROGRAM,
-    NAME,
-    ASSIGN,
-    SEMICOLON,
-    PRINT,
-    IF,
-    ELSE,
-    WHILE,
-    LPAREN,
-    RPAREN,
-    LCURL,
-    RCURL,
-    NOT,
-    OR,
-    AND,
-    EQUAL,
-    LESS,
-    ADD,
-    SUBTRACT,
-    MULTIPLY,
-    DIVIDE,
-    NUMBER,
-    NUM,
+    PROGRAM, // program
+    NAME, // name
+    ASSIGN, // =
+    SEMICOLON, // ;
+    PRINT, // out
+    IF, // if
+    ELSE, // else
+    WHILE, // while
+    LPAREN, // (
+    RPAREN, // )
+    LCURL, // {
+    RCURL, // }
+    NOT, // !
+    OR, // |
+    AND, // &
+    EQUAL, // ==
+    LESS, // <
+    ADD, // +
+    SUBTRACT, // - 
+    MULTIPLY, // *
+    DIVIDE, // /
+    NUMBER, // number
+    NUM, // num
     EOS
 };
 
