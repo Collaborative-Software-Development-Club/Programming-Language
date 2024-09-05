@@ -1,0 +1,4 @@
+program q {
+  num money = $10;
+  if (1 hello 0) {
+}
