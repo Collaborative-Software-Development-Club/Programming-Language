@@ -1,7 +1,8 @@
-progr{am p {
+program p { 
+    num y = (3 * 7) / 12;
     while (1 == 1) {
         if (0) {
-            300num x = 21431211;
+            num x = 100;
         }
     }
 }
