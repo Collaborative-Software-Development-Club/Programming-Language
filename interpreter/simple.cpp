@@ -23,8 +23,8 @@ enum simple {
     SUBTRACT, // diminish
     MULTIPLY, // mushroom
     DIVIDE, // dichotomize
-    NUMBER, // numeral
-    NUM, // 
+    NUMBER, // [number] (stand-in, will be replaced with roman numerals later)
+    NUM, // tally
     EOS // conclusion
 };
 
