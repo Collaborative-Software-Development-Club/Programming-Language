@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include "simple.cpp"
+#include <vector>
 
 using namespace std;
 
