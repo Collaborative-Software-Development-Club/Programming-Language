@@ -70,9 +70,10 @@ class Scanner {
             if(curr_token == NUMBER){
                 result = NUMBER;
             }else{
-                cerr < "PRITHEE, THOU HADST NOT SPECIFIED A VALID NUMERAL." << endl;
+                cerr << "PRITHEE, THOU HADST NOT SPECIFIED A VALID NUMERAL." << endl;
                 exit(-1);
             }   
+            return result;
         }
 };
 
