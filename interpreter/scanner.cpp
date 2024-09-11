@@ -30,7 +30,7 @@ class Scanner {
             string currentLine;
 
             if(!filestream.is_open()){
-                ceff << "FILE OPEN FAILED" << endl;
+                cerr << "FILE OPEN FAILED" << endl;
                 return;
             } else{
                 while(getline(filestream, currentLine)){
