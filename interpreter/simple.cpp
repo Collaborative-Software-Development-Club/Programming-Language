@@ -8,6 +8,7 @@ enum simple {
     SEMICOLON,
     PRINT,
     IF,
+    ELIF,
     ELSE,
     WHILE,
     LPAREN,
@@ -18,13 +19,19 @@ enum simple {
     OR,
     AND,
     EQUAL,
-    LESS,
+    NOTEQUAL,
+    LT,
+    GT,
+    LTE,
+    GTE,
     ADD,
     SUBTRACT,
     MULTIPLY,
     DIVIDE,
-    NUMBER,
-    NUM,
+    POWER,
+    MOD,
+    NUMBER, // this is for the variable
+    NUM, // this is for keywords like int
     EOS
 };
 

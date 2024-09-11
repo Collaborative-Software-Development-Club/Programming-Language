@@ -1,0 +1,4 @@
+print a = 123;
+while (not x < 5 and x > 10) {
+    y = y + 1;
+}
