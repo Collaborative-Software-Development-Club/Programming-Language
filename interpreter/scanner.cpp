@@ -39,7 +39,7 @@ class Scanner {
                         charStream.push_back(c);
                     }
                 }
-                fstream.close();
+                filestream.close();
             }
             // if we cannot find the specified file, gracefully return an error and exit
         }
