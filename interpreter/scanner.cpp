@@ -22,6 +22,35 @@ class Scanner {
         int curr_number; // the int value of the most recent (or current) 'NUMBER' token
         string curr_name; // the string value of the most recent (or current) 'NAME' token
 
+        bool checkSyntax(string s){
+            if(s.compare("designation") == 0){ curr_token = NAME; }
+            else if(s.compare("designate") == 0) { curr_token = ASSIGN;}
+            else if(s.compare(".") == 0){ curr_token = SEMICOLON;}
+            else if(s.compare("(") == 0){ curr_token = LPAREN;}
+            else if(s.compare(")") == 0){ curr_token = RPAREN;}
+            else if(s.compare("{") == 0){ curr_token = LCURL;}
+            else if(s.compare("}") == 0){ curr_token = RCURL;}
+            else if(s.compare("nay") == 0){ curr_token = NOT;}
+            else if(s.compare("disjunction") == 0){ curr_token = OR;}
+            else if(s.compare("moreover") == 0){ curr_token = AND;}
+            else if(s.compare("commensurate") == 0){ curr_token = EQUAL;}
+            else if(s.compare("beneath") == 0){ curr_token = LESS;}
+            else if(s.compare("replenish") == 0){ curr_token = ADD;}
+            else if(s.compare("diminish") == 0){ curr_token = SUBTRACT;}
+            else if(s.compare("mushroom") == 0){ curr_token = MULTIPLY;}
+            else if(s.compare("dichotomize") == 0){ curr_token = DIVIDE;}
+            else if(s.compare("") == 0){ curr_token = LPAREN;}
+            else {
+                cerr << "ERROR: Invalid syntax error!" << endl;
+                exit(-1);
+            }
+        
+        
+        
+        }   
+
+        bool checkKeyword(string s);
+        //
     public:
         Scanner(string f) {
             // use filename argument 'f' to open the file, read characters as needed, and eventually close
