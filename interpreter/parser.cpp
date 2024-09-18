@@ -1,0 +1,315 @@
+#include <iostream>
+#include <string>
+#include "scanner.cpp"
+#include <vector>
+
+using namespace std;
+
+#ifndef PARSER_H
+#define PARSER_H
+
+class Parser {
+    public:
+
+        //Static variables only exist for the parser!
+        //Set up for only the timeline of the parser.
+        static Scanner token_stream;
+        static Program p;
+        static void initialize_parser(string f) {
+            token_stream = Scanner(f);
+        }
+        static void parse_all() {
+            p.parse(); // time to go through our tree...
+        }
+        static void print_all() {
+            p.print();
+        }
+};
+
+static class ErrorThrow {
+    public:
+    static constexpr const char* enum_strings[] = {
+        "PROGRAM",
+        "NAME",
+        "ASSIGN",
+        "SEMICOLON",
+        "PRINT",
+        "IF",
+        "ELSE",
+        "WHILE",
+        "LPAREN",
+        "RPAREN",
+        "LCURL",
+        "RCURL",
+        "NOT",
+        "OR",
+        "AND",
+        "EQUAL",
+        "LESS",
+        "ADD",
+        "SUBTRACT",
+        "MULTIPLY",
+        "DIVIDE",
+        "NUMBER",
+        "NUM",
+        "EOS"
+    };
+    static void throw_compile_exception(simple actual, simple expected) { // throw an error if a token isn't right
+        if (actual != expected) {
+            cerr << "ERROR: Expected token " << enum_strings[expected] << ", got " << enum_strings[actual] << endl;
+            exit(-1);
+        }
+    }
+};
+
+class Program { // the first non-terminal of Simple. it has been done for you to help demonstrate the
+    // recursive descent parsing process :-)
+    // NOTE: assuming your language uses the same tokens as Simple, you will not need to change anything here!
+    bool exists = false;
+    StatementSeq ss; // according to our parse tree, the only non-terminal we could have is statement-seq!
+    string program_name;
+    public:
+        void parse() {
+            exists = true; // ensure that we actually parsed an instance of this class
+            
+            // 1. first we check that the program token is the very first token
+                //runs Parser.
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), PROGRAM);
+            // 2. if it is, we no longer need it! so move on
+            Parser::token_stream.next_token();
+            // 3. now we check if the program has a name. an unnamed program is definitely bad
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), NAME);
+            // 4. if so, get the name of the program for later, move on
+            program_name = Parser::token_stream.get_name();
+            Parser::token_stream.next_token();
+            // 5. check if our program is blocked off with curly braces, if so, move on
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), LCURL);
+            Parser::token_stream.next_token();
+            // 6. now we know from our tree that statement-seq will be parsed next, so parse it
+            ss.parse();
+            // 7. we now assume that statement-seq was parsed successfully (otherwise it or some
+            // other non-terminal would have caught it and exited) so we check for the last curly brace
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), RCURL);
+            // 8. we should now be at EOS after we do next_token
+            Parser::token_stream.next_token();
+        }
+        void print() {
+            // for the print method, we assume that the program was parsed successfully, so we just
+            // print out the terminals in Program and move on to the statement-seq printing
+            cout << "program " << program_name << " {" << endl; // replace relevant strings with your syntax!
+            ss.print();
+            cout << "} " << endl;
+        }
+};
+
+class StatementSeq {
+    public:
+        bool exists = false;
+
+        Statement s;
+        StatementSeq ss; 
+        bool extra = false;
+
+        void parse() {
+            // hint for parsing statementseq: we KNOW that in any case, statement will be parsed.
+            // the trick is finding out if statementseq needs parsed again (check your statement code)
+
+            s.parse();  //First token is a Statement!
+            //Now check for a statementSequence!
+
+            if(Parser::token_stream.current_token() == NAME || Parser::token_stream.current_token() == IF || Parser::token_stream.current_token() == WHILE ||Parser::token_stream.current_token() == PRINT || Parser::token_stream.current_token() == NUM){
+                //Then we are in the case of another statement sequence! We recursively needed to check for the token type!
+                extra = true;
+                StatementSeq::parse();
+            }
+        }
+        void print() {
+            //print out the terminals in the prog... None in this program!
+            //Just let Sequence do the work...
+            s.print();
+            if(extra){
+                StatementSeq::print();
+            }
+            
+        }
+};
+
+class Declare {
+    public:
+        DeclareNum d;
+
+        bool exists = false;
+        void parse() {
+
+            //Declare must have the declare non-term.
+            d.parse();
+
+        }
+        void print() {
+            //No non-terminals here either!
+            d.print();
+        }
+};
+
+class DeclareNum {
+    public:
+        bool exists = false;
+        string name = "";
+        void parse() {
+                //The first terminal should be num.
+                ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), NUM);
+                Parser::token_stream.next_token();
+
+                //get the name next
+                ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), NAME);
+                name = Parser::token_stream.get_name();
+                Parser::token_stream.next_token();
+
+                //check for the ;
+                ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), SEMICOLON);
+                Parser::token_stream.next_token();
+        }
+        void print() {
+            cout << "num " + name + " " + ";";
+        }
+};
+
+class Statement {
+    public:
+        bool exists = false;
+        void parse() {
+            // hint for statement: there are 5 non-terminals here! how do we determine which we need?
+            // (look at what the next terminal COULD be) 
+            Assign a;
+            If i;
+            Loop l;
+            Print p;
+
+            switch (Parser::token_stream.current_token()){
+                case(NAME):
+                    //THEN THE ASSIGN INST!
+                    a.parse();
+                    a.exists = true;
+                    break;
+                case(IF):
+                    i.parse();
+                    i.exists = true;
+                    break;
+                case(WHILE):
+                    l.parse();
+                    l.exists = true;
+                    break;
+                case(PRINT):
+                    p.parse();
+                    p.exists = true;
+                    break;
+
+
+
+            }
+        }
+        void print() {
+
+        }
+};
+
+class Assign {
+    public:
+        bool exists = false;
+        void parse() {
+
+        }
+        void print() {
+
+        }
+};
+
+class Print {
+    public:
+        bool exists = false;
+        void parse() {
+
+        }
+        void print() {
+
+        }
+};
+
+class If {
+    public:
+        bool exists = false;
+        void parse() {
+
+        }
+        void print() {
+
+        }
+};
+
+class Loop {
+    public:
+        bool exists = false;
+        void parse() {
+
+        }
+        void print() {
+
+        }
+};
+
+class Condition {
+    public:
+        bool exists = false;
+        void parse() {
+
+        }
+        void print() {
+
+        }
+};
+
+class Compare {
+    public:
+        bool exists = false;
+        void parse() {
+
+        }
+        void print() {
+
+        }
+};
+
+class Expression {
+    public:
+        bool exists = false;
+        void parse() {
+
+        }
+        void print() {
+
+        }
+};
+
+class Term {
+    public:
+        bool exists = false;
+        void parse() {
+
+        }
+        void print() {
+
+        }
+};
+
+class Factor {
+    public:
+        bool exists = false;
+        void parse() {
+
+        }
+        void print() {
+
+        }
+};
+
+#endif
