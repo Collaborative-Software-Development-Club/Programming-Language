@@ -47,11 +47,22 @@ class Scanner {
         
         
         
+        
         }   
 
-        bool checkKeyword(string s);
-        //
-    public:
+        bool checkKeyword(string s){
+            bool found = true;
+            if (s.compare("memoranda") == 0) { curr_token = PROGRAM;}
+            else if (s.compare("etch") == 0) { curr_token = PRINT; }
+            else if (s.compare("presuming") == 0) { curr_token = IF; }
+            else if (s.compare("lest") == 0) { curr_token = ELSE; }
+            else if (s.compare("midst") == 0) { curr_token = WHILE; }
+            else if (s.compare("tally") == 0) { curr_token = NUM; }
+            else found = false;
+            return found;
+        
+
+        }    public:
         Scanner(string f) {
             // use filename argument 'f' to open the file, read characters as needed, and eventually close
             // the file stream
