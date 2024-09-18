@@ -4,7 +4,7 @@
 <declare-num> ::= NUM NAME SEMICOLON
 <statement> ::= <assign> | <if> | <loop> | <print> | <declare>
 <assign> ::= NAME ASSIGN <expression> SEMICOLON
-<print> ::= PRINT LPAREN <expression> RPAREN
+<print> ::= PRINT LPAREN <expression> RPAREN SEMICOLON
 <if> ::= IF <condition> LCURL <statement-seq> RCURL | IF <condition> LCURL <statement-seq> RCURL ELSE LCURL <statement-seq> RCURL
 <loop> ::= WHILE <condition> LCURL <statement-seq> RCURL
 <condition> ::= <compare> | NOT <condition> | <compare> OR <condition> | <compare> AND <condition>
