@@ -100,46 +100,49 @@ class Scanner {
                     curr_number = stoi(token);
                 }
 
-                //next, check for the keywords...
-                if(token == "PROGRAM"){
-                    curr_token = PROGRAM;
-                }else if(token == "="){
-                    curr_token = ASSIGN;
-                }else if(token == ";"){
-                    curr_token = SEMICOLON;
-                }else if(token == "say"){
-                    curr_token = PRINT;
-                }else if(token == "if"){
-                    curr_token = IF;
-                }else if(token == "else"){
-                    curr_token = ELSE;
-                }else if(token == "while"){
-                    curr_token = WHILE;
-                }else if(token == "("){
-                    curr_token = LPAREN;
-                }else if(token == ")"){
-                    curr_token = RPAREN;
-                }else if(token == "{"){
-                    curr_token = LCURL;
-                }else if(token == "}"){
-                    curr_token = RCURL;
-                }else if(token == "!"){
-                    curr_token = NOT;
-                }else if(token == "||"){
-                    curr_token = OR;
-                }else if(token == "&&"){
-                    curr_token = AND;
-                }else if(token == "-"){
-                    curr_token = SUBTRACT;
-                }else if(token == "*"){
-                    curr_token = MULTIPLY;
-                }else if(token == "/"){
-                    curr_token = DIVIDE;
-                }else{
-                    //TODO -- add more checks for these later...
-                    curr_token = NAME;
-                    curr_name = token;
+                if(!num){
+                    //next, check for the keywords...
+                    if(token == "PROGRAM"){
+                        curr_token = PROGRAM;
+                    }else if(token == "="){
+                        curr_token = ASSIGN;
+                    }else if(token == ";"){
+                        curr_token = SEMICOLON;
+                    }else if(token == "say"){
+                        curr_token = PRINT;
+                    }else if(token == "if"){
+                        curr_token = IF;
+                    }else if(token == "else"){
+                        curr_token = ELSE;
+                    }else if(token == "while"){
+                        curr_token = WHILE;
+                    }else if(token == "("){
+                        curr_token = LPAREN;
+                    }else if(token == ")"){
+                        curr_token = RPAREN;
+                    }else if(token == "{"){
+                        curr_token = LCURL;
+                    }else if(token == "}"){
+                        curr_token = RCURL;
+                    }else if(token == "!"){
+                        curr_token = NOT;
+                    }else if(token == "||"){
+                        curr_token = OR;
+                    }else if(token == "&&"){
+                        curr_token = AND;
+                    }else if(token == "-"){
+                        curr_token = SUBTRACT;
+                    }else if(token == "*"){
+                        curr_token = MULTIPLY;
+                    }else if(token == "/"){
+                        curr_token = DIVIDE;
+                    }else{
+                        //TODO -- add more checks for these later...
+                        curr_token = NAME;
+                        curr_name = token;
+                    }
                 }
+                
                 
             }else{
                 cerr<< "The number of tokens is 0!" << endl;
