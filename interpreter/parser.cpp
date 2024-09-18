@@ -101,6 +101,7 @@ class Program { // the first non-terminal of Simple. it has been done for you to
 class StatementSeq {
     Statement s; 
     StatementSeq ss; 
+    bool recursive = false;
     public:
         bool exists = false;
         void parse() {
@@ -109,11 +110,15 @@ class StatementSeq {
             s.parse();
             if(Parser::token_stream.current_token() == NAME || Parser:token_stream.current_token() == IF || Parser:token_stream.current_token() == WHILE || Parser:token_stream.current_token() == PRINT) {
                 ss.parse();
+                recursive = true;
             }
             // the trick is finding out if statementseq needs parsed again (check your statement code)
         }
         void print() {
-
+            s.print();
+            if(recursive){
+                ss.print();
+            }
         }
 };
 
