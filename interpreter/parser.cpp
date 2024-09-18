@@ -108,7 +108,7 @@ class StatementSeq {
             exists = true;
             // hint for parsing statementseq: we KNOW that in any case, statement will be parsed.
             s.parse();
-            if(Parser::token_stream.current_token() == NAME || Parser:token_stream.current_token() == IF || Parser:token_stream.current_token() == WHILE || Parser:token_stream.current_token() == PRINT) {
+            if(Parser::token_stream.current_token() == NAME || Parser::token_stream.current_token() == IF || Parser::token_stream.current_token() == WHILE || Parser::token_stream.current_token() == PRINT) {
                 ss.parse();
                 recursive = true;
             }
