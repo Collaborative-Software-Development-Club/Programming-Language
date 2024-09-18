@@ -44,6 +44,7 @@ class Scanner {
                         char c = line[i];
 
                         //check if the character is part of the current token.
+                        //TODO check this
                         if(c != ' '){
                             if((c == '(') || (c == '{')){
                                 //this is the case of a special circ. token!
