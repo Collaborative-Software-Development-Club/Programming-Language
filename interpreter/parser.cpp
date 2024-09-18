@@ -17,7 +17,7 @@ class Parser {
         }
         static void parse_all() {
             p.parse(); // time to go through our tree...
-        }
+        }   
         static void print_all() {
             p.print();
         }
@@ -100,7 +100,7 @@ class Program { // the first non-terminal of Simple. it has been done for you to
 
 class StatementSeq {
     Statement s; 
-    StatementSeq ss; 
+    StatementSeq * ss; 
     bool recursive = false;
     public:
         bool exists = false;
@@ -109,7 +109,7 @@ class StatementSeq {
             // hint for parsing statementseq: we KNOW that in any case, statement will be parsed.
             s.parse();
             if(Parser::token_stream.current_token() == NAME || Parser::token_stream.current_token() == IF || Parser::token_stream.current_token() == WHILE || Parser::token_stream.current_token() == PRINT) {
-                ss.parse();
+                (*ss).parse();
                 recursive = true;
             }
             // the trick is finding out if statementseq needs parsed again (check your statement code)
@@ -117,19 +117,21 @@ class StatementSeq {
         void print() {
             s.print();
             if(recursive){
-                ss.print();
+                (*ss).print();
             }
         }
 };
 
 class Declare {
+    DeclareNum dm;
     public:
         bool exists = false;
         void parse() {
-
+            exists = true; 
+            dm.parse();
         }
         void print() {
-
+            dm.print();
         }
 };
 
@@ -137,8 +139,8 @@ class DeclareNum {
     public:
         bool exists = false;
         void parse() {
-
-        }
+            
+        }   
         void print() {
 
         }
