@@ -157,7 +157,10 @@ class Scanner {
                         curr_token = MULTIPLY;
                     }else if(token == "/"){
                         curr_token = DIVIDE;
-                    }else{
+                    } else if(token == "num") {
+                        curr_token = NUM;
+                        //cmon
+                    } else {
                         //TODO -- add more checks for these later...
                         curr_token = NAME;
                         curr_name = token;
