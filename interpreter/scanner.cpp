@@ -53,6 +53,8 @@ class Scanner {
                     }
                 }
 
+                //By here all words in the file have been turned to tokens...
+
                 //check for leftover tokens if the file ended.
                 if(token != ""){
                     q.push(token);
@@ -71,6 +73,22 @@ class Scanner {
             return curr_token;
         }
 
+        int is_num(string token){
+            int num = 1;
+            string numbers = "0123456789";
+                for(char c : token){
+                    if (!numbers.find(c)){
+                        num = 0;
+                        break;
+                    }
+                }
+                if(num){
+                    curr_token = NUMBER;
+                    curr_number = stoi(token);
+                }
+            return num;
+        }
+
         void next_token() {
             // find the next available token in the scanning stream, covert it into a token, store it
             // if a character is an invalid symbol, throw an error
@@ -82,23 +100,8 @@ class Scanner {
                 string token = q.front();
                 q.pop();
 
-                //Now we need to decode the token!
-                simple type;
-
-                bool num = true;
-
                 //first, check if the token is a number...
-                string numbers = "0123456789";
-                for(char c : token){
-                    if (!numbers.find(c)){
-                        num = false;
-                        break;
-                    }
-                }
-                if(num){
-                    curr_token = NUMBER;
-                    curr_number = stoi(token);
-                }
+                int num = is_num(token);
 
                 if(!num){
                     //next, check for the keywords...
