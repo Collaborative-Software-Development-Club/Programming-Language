@@ -62,10 +62,13 @@ static class ErrorThrow {
 class Program { // the first non-terminal of Simple. it has been done for you to help demonstrate the
     // recursive descent parsing process :-)
     // NOTE: assuming your language uses the same tokens as Simple, you will not need to change anything here!
+    bool exists = false;
     StatementSeq ss; // according to our parse tree, the only non-terminal we could have is statement-seq!
     string program_name;
     public:
         void parse() {
+            exists = true; // ensure that we actually parsed an instance of this class
+            
             // 1. first we check that the program token is the very first token
             ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), PROGRAM);
             // 2. if it is, we no longer need it! so move on
@@ -97,6 +100,7 @@ class Program { // the first non-terminal of Simple. it has been done for you to
 
 class StatementSeq {
     public:
+        bool exists = false;
         void parse() {
             // hint for parsing statementseq: we KNOW that in any case, statement will be parsed.
             // the trick is finding out if statementseq needs parsed again (check your statement code)
@@ -108,6 +112,7 @@ class StatementSeq {
 
 class Declare {
     public:
+        bool exists = false;
         void parse() {
 
         }
@@ -118,6 +123,7 @@ class Declare {
 
 class DeclareNum {
     public:
+        bool exists = false;
         void parse() {
 
         }
@@ -128,6 +134,7 @@ class DeclareNum {
 
 class Statement {
     public:
+        bool exists = false;
         void parse() {
             // hint for statement: there are 5 non-terminals here! how do we determine which we need?
             // (look at what the next terminal COULD be) 
@@ -139,6 +146,7 @@ class Statement {
 
 class Assign {
     public:
+        bool exists = false;
         void parse() {
 
         }
@@ -149,6 +157,7 @@ class Assign {
 
 class Print {
     public:
+        bool exists = false;
         void parse() {
 
         }
@@ -159,6 +168,7 @@ class Print {
 
 class If {
     public:
+        bool exists = false;
         void parse() {
 
         }
@@ -169,6 +179,7 @@ class If {
 
 class Loop {
     public:
+        bool exists = false;
         void parse() {
 
         }
@@ -179,6 +190,7 @@ class Loop {
 
 class Condition {
     public:
+        bool exists = false;
         void parse() {
 
         }
@@ -189,6 +201,7 @@ class Condition {
 
 class Compare {
     public:
+        bool exists = false;
         void parse() {
 
         }
@@ -199,6 +212,7 @@ class Compare {
 
 class Expression {
     public:
+        bool exists = false;
         void parse() {
 
         }
@@ -209,6 +223,7 @@ class Expression {
 
 class Term {
     public:
+        bool exists = false;
         void parse() {
 
         }
@@ -219,6 +234,7 @@ class Term {
 
 class Factor {
     public:
+        bool exists = false;
         void parse() {
 
         }
