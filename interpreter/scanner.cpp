@@ -35,6 +35,7 @@ class Scanner {
                 //now read in any available input.
                 string line;
                 string token = "";
+                int tokenSize = 0;
                 while(getline(file, line)){
                     //line now holds a line of input from the file.
 
@@ -44,11 +45,27 @@ class Scanner {
 
                         //check if the character is part of the current token.
                         if(c != ' '){
-                            token += c;
+                            if((c == '(') || (c == '{')){
+                                //this is the case of a special circ. token!
+                                q.push(""+c); //Push the (/{ as it's own token!
+                            }else if((c == ')') || (c == '}')){
+                                //the }/) came at the end of something else...
+                                if(token.size() > 0){
+                                    q.push(token);
+                                    token = "";
+                                    tokenSize = 0;
+                                }
+                                q.push(""+c); //end of the token...
+                            }else{
+                                token += c;
+                                tokenSize++;
+                            }
+                            
                         }else{
                             //if not, we have a new token to get!
                             q.push(token);
                             token = "";
+                            tokenSize = 0;
                         }
                     }
                 }
