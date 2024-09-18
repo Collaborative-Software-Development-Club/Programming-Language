@@ -111,6 +111,7 @@ class StatementSeq {
             if(Parser::token_stream.current_token() == NAME || Parser::token_stream.current_token() == IF || Parser::token_stream.current_token() == WHILE || Parser::token_stream.current_token() == PRINT) {
                 (*ss).parse();
                 recursive = true;
+                
             }
             // the trick is finding out if statementseq needs parsed again (check your statement code)
         }
@@ -136,13 +137,24 @@ class Declare {
 };
 
 class DeclareNum {
+    string var_name;
     public:
         bool exists = false;
         void parse() {
-            
+            exists = true;
+
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), NUM);
+            Parser::token_stream.next_token();
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), NAME);
+            var_name = Parser::token_stream.get_name();
+            Parser::token_stream.next_token();
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), SEMICOLON);
+            Parser::token_stream.next_token();
+
+
         }   
         void print() {
-
+            cout << "Tally " << var_name << "." << endl; // replace relevant strings with your syntax!
         }
 };
 
