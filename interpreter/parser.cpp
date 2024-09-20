@@ -26,7 +26,7 @@ class Parser {
         }
 };
 
-static class ErrorThrow {
+class ErrorThrow {
     public:
     static constexpr const char* enum_strings[] = {
         "PROGRAM",
@@ -107,7 +107,7 @@ class StatementSeq {
         bool exists = false;
 
         Statement s;
-        StatementSeq ss; 
+        StatementSeq * ss; 
         bool extra = false;
 
         void parse() {
@@ -120,15 +120,15 @@ class StatementSeq {
             if(Parser::token_stream.current_token() == NAME || Parser::token_stream.current_token() == IF || Parser::token_stream.current_token() == WHILE ||Parser::token_stream.current_token() == PRINT || Parser::token_stream.current_token() == NUM){
                 //Then we are in the case of another statement sequence! We recursively needed to check for the token type!
                 extra = true;
-                StatementSeq::parse();
+                ss->exists = true;
             }
         }
         void print() {
             //print out the terminals in the prog... None in this program!
             //Just let Sequence do the work...
             s.print();
-            if(extra){
-                StatementSeq::print();
+            if(ss->exists){
+                ss->print();
             }
             
         }
@@ -140,10 +140,9 @@ class Declare {
 
         bool exists = false;
         void parse() {
-
             //Declare must have the declare non-term.
+            //work?
             d.parse();
-
         }
         void print() {
             //No non-terminals here either!
@@ -177,13 +176,16 @@ class DeclareNum {
 class Statement {
     public:
         bool exists = false;
+        Assign a;
+        If i;
+        Loop l;
+        Print p;
+        Declare d;
+
         void parse() {
             // hint for statement: there are 5 non-terminals here! how do we determine which we need?
             // (look at what the next terminal COULD be) 
-            Assign a;
-            If i;
-            Loop l;
-            Print p;
+           
 
             switch (Parser::token_stream.current_token()){
                 case(NAME):
@@ -203,46 +205,120 @@ class Statement {
                     p.parse();
                     p.exists = true;
                     break;
-
-
-
+                case(NUM):
+                    d.parse();
+                    d.exists = true;
+                    break;
+                default:
+                    cout << "THE FILE COULD NOT BE PARSED!\nEXITING PROGRAM..." <<endl;
+                    exit(1);
             }
         }
         void print() {
-
+            //for the specific non terminal found for Statement, print!
+            if(a.exists){
+                a.print();
+            }else if(i.exists){
+                i.print();
+            }else if(l.exists){
+                l.print();
+            }else if(p.exists){
+                p.print();
+            }else{
+                d.print();
+            }
         }
 };
 
 class Assign {
     public:
+    string name = "";
+    Expression e;
         bool exists = false;
         void parse() {
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), NAME);
+            name = Parser::token_stream.get_name();
+            Parser::token_stream.next_token(); //go on!
 
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), ASSIGN);
+            Parser::token_stream.next_token(); //go on!
+            //The next token goes to the non-terminal expression!
+
+            e.parse();
+
+            //lastly, there should be a semicolon!
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), SEMICOLON);
+            Parser::token_stream.next_token(); //go on!
         }
         void print() {
-
+            cout << name + " = ";
+            e.print();
+            cout << ";" << endl; 
         }
 };
 
 class Print {
     public:
         bool exists = false;
+        Expression e;
         void parse() {
-
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), PRINT);
+            Parser::token_stream.next_token();
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), LPAREN);
+            Parser::token_stream.next_token();
+            e.parse();
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), RPAREN);
+            Parser::token_stream.next_token();
         }
         void print() {
-
+            cout << "(";
+            e.print();
+            cout << ")" << endl;
         }
 };
 
 class If {
     public:
+        Condition c;
+        StatementSeq ss; 
+        StatementSeq ss2;
+
         bool exists = false;
         void parse() {
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), IF);
+            Parser::token_stream.next_token();
+            c.parse();
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), LCURL);
+            Parser::token_stream.next_token();
+            ss.parse();
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), RCURL);
+            Parser::token_stream.next_token();
 
+            //THEN WE HAVE AN IF-ELSE RATHER THAN AN IF!
+            //guess we don't have else-ifs here... --> to be implemented later?
+            if(Parser::token_stream.current_token() == ELSE){
+                Parser::token_stream.next_token();
+                ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), LCURL);
+                Parser::token_stream.next_token();
+                ss2.parse(); //parse through our second StatementSeq.
+                ss2.exists = true; //Set to true for our printing to be done for an if-else.
+                ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), RCURL);
+                Parser::token_stream.next_token();
+            }
+        
         }
         void print() {
-
+            cout << "if ";
+            c.print();
+            cout << "(";
+            ss.print();
+            cout << ")";
+            if(ss2.exists){
+                //then there was an else statement!
+                cout<<"else (";
+                ss2.print();
+                cout << ")";
+            }
         }
 };
 
