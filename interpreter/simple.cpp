@@ -30,8 +30,8 @@ enum simple {
     DIVIDE,
     POWER,
     MOD,
-    NUMBER, // this is for the variable
-    NUM, // this is for keywords like int
+    NUMBER,
+    INT,
     EOS
 };
 

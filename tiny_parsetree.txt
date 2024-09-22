@@ -1,14 +1,45 @@
-<program> ::= PROGRAM NAME LCURL <statement-seq> RCURL
+<program>       ::= PROGRAM NAME LCURL <statement-seq> RCURL
 <statement-seq> ::= <statement> | <statement><statement-seq>
-<declare> ::= <declare-num>
-<declare-num> ::= NUM NAME SEMICOLON
-<statement> ::= <assign> | <if> | <loop> | <print> | <declare>
-<assign> ::= NAME ASSIGN <expression> SEMICOLON
-<print> ::= PRINT LPAREN <expression> RPAREN
-<if> ::= IF <condition> LCURL <statement-seq> RCURL | IF <condition> LCURL <statement-seq> RCURL ELSE LCURL <statement-seq> RCURL
-<loop> ::= WHILE <condition> LCURL <statement-seq> RCURL
-<condition> ::= <compare> | NOT <condition> | <compare> OR <condition> | <compare> AND <condition>
-<compare> ::= <expression> EQUALS <expression> | <expression> LESS <expression>
-<expression> ::= <term> | <term> ADD <expression> | <term> SUBTRACT <expression>
-<term> ::= <factor> | <factor> MULTIPLY <term> | <factor> DIVIDE <term>
-<factor> ::= NAME | NUMBER | LPAREN <expression> RPAREN
+
+<statement>     ::= <assign>
+                    | <if>
+                    | <loop>
+                    | <print>
+                    | <declare>
+
+<declare>       ::= <declare-num>
+<declare-num>   ::= INT NAME
+
+<assign>        ::= NAME ASSIGN <expression>
+<print>         ::= PRINT LPAREN <expression> RPAREN
+
+<if>            ::= IF <condition> LCURL <statement-seq> RCURL [<elif-seq>] [ELSE LCURL <statement-seq> RCURL]
+<elif-seq>      ::= ELIF <condition> LCURL <statement-seq> RCURL [<elif-seq>]
+
+<loop>          ::= WHILE <condition> LCURL <statement-seq> RCURL
+
+<condition>     ::= <compare>
+                    | NOT <condition>
+                    | <compare> OR <condition>
+                    | <compare> AND <condition>
+
+<compare>       ::= <expression> EQUAL <expression>
+                    | <expression> NOTEQUAL <expression>
+                    | <expression> LT <expression>
+                    | <expression> GT <expression> 
+                    | <expression> LTE <expression>
+                    | <expression> GTE <expression>
+
+<expression>    ::= <term>
+                    | <term> ADD <expression>
+                    | <term> SUBTRACT <expression>
+                    
+<term>          ::= <factor>
+                    | <factor> POWER <term>
+                    | <factor> MULTIPLY <term>
+                    | <factor> DIVIDE <term>
+                    | <factor> MOD <term>
+
+<factor>        ::= NAME
+                    | NUMBER
+                    | LPAREN <expression> RPAREN

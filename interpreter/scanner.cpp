@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "simple.cpp"
+#include "simple.cpp" // Include simple types for token representation
 
 using namespace std;
 
@@ -10,164 +10,176 @@ using namespace std;
 
 class Scanner {
     private:
-        simple curr_token; // the current token
-        int curr_number; // the int value of the most recent (or current) 'NUMBER' token
-        string curr_name; // the string value of the most recent (or current) 'NAME' token
-        ifstream file;
+        simple currToken; // The current token
+        int currNumber; // The value of the most recent NUMBER token
+        string currName; // The name of the most recent NAME token
+        ifstream file; // Input file stream
 
     public:
+        // Constructor: Opens the specified file
         Scanner(string f) {
             file.open(f);
             if (!file.is_open()) {
+                // Error if the file can't be opened
                 cerr << "Error: File not found: " << f << endl;
                 exit(1);
             } else cout << "File successfully opened" << endl;
         }
 
+        // Deconstructor: Closes the file if it's open
         ~Scanner() {
             if (file.is_open()) file.close();
         }
 
+        // Handles identifiers and keywords
         void handleIdentifier(char firstChar) {
             string name;
+
+            // Start building the name
             name += firstChar;
 
             char ch;
+
+            // Read until non-alphanumeric character
             while (file.get(ch) && isalnum(ch)) name += ch;
 
+            // Put the last character back
             file.unget();
 
-            if      (name == "print") curr_token = PRINT;
-            else if (name == "while") curr_token = WHILE;
-            else if (name == "if")    curr_token = IF;
-            else if (name == "elif")  curr_token = ELIF;
-            else if (name == "else")  curr_token = ELSE;
-            else if (name == "not")   curr_token = NOT;
-            else if (name == "and")   curr_token = AND;
-            else if (name == "or")    curr_token = OR;
+            // Match against known keywords
+            if      (name == "program")   currToken = PROGRAM;
+            else if (name == "print")     currToken = PRINT;
+            else if (name == "int")       currToken = INT;
+            else if (name == "while")     currToken = WHILE;
+            else if (name == "if")        currToken = IF;
+            else if (name == "elif")      currToken = ELIF;
+            else if (name == "else")      currToken = ELSE;
+            else if (name == "not")       currToken = NOT;
+            else if (name == "and")       currToken = AND;
+            else if (name == "or")        currToken = OR;
             else {
-                curr_token = NAME;
-                curr_name = name;
+                // If it's not a keyword, treat as a NAME
+                currToken = NAME;
+
+                // Store the name
+                currName = name;
             }
         }
 
+        // Handles number tokens
         void handleNumber(char firstDigit) {
+            // Start building the number
             int num = firstDigit - '0';
 
             char ch;
+
+            // Read until non-digit
             while (file.get(ch) && isdigit(ch)) num = num * 10 + (ch - '0');
             
+            // Put the last character back
             file.unget();
 
-            curr_token = NUMBER;
-            curr_number = num;
+            // Set the current token as NUMBER
+            currToken = NUMBER;
+
+            // Store the value of the number
+            currNumber = num;
         }
 
+        // Handles multi-character operators
         void handleMultiChar(char ch) {
             char nextCh;
 
             if (file.get(nextCh)) {
-                if      (ch == '=' && nextCh == '=') curr_token = EQUAL;
-                else if (ch == '*' && nextCh == '*') curr_token = POWER;
-                else if (ch == '!' && nextCh == '=') curr_token = NOTEQUAL;
-                else if (ch == '<' && nextCh == '=') curr_token = LTE;
-                else if (ch == '>' && nextCh == '=') curr_token = GTE;
+                if      (ch == '=' && nextCh == '=') currToken = EQUAL;
+                else if (ch == '*' && nextCh == '*') currToken = POWER;
+                else if (ch == '!' && nextCh == '=') currToken = NOTEQUAL;
+                else if (ch == '<' && nextCh == '=') currToken = LTE;
+                else if (ch == '>' && nextCh == '=') currToken = GTE;
                 else {
+                    // Put the last character back
                     file.unget();
+
+                    // If not a multi-character, treat it as a single-character
                     handleSingleChar(ch);
                 }
             } else handleSingleChar(ch);
         }
 
+        // Handles single-character tokens
         void handleSingleChar(char ch) {
-            switch (ch) {
-                case ';':
-                    curr_token = SEMICOLON;
-                    break;
-                case '=':
-                    curr_token = ASSIGN;
-                    break;
-                case '(':
-                    curr_token = LPAREN;
-                    break;
-                case ')':
-                    curr_token = RPAREN;
-                    break;
-                case '{':
-                    curr_token = LCURL;
-                    break;
-                case '}':
-                    curr_token = RCURL;
-                    break;
-                case '+':
-                    curr_token = ADD;
-                    break;
-                case '-':
-                    curr_token = SUBTRACT;
-                    break;
-                case '*':
-                    curr_token = MULTIPLY;
-                    break;
-                case '/':
-                    curr_token = DIVIDE;
-                    break;
-                case '%':
-                    curr_token = MOD;
-                    break;
-                case '<':
-                    curr_token = LT;
-                    break;
-                case '>':
-                    curr_token = GT;
-                    break;
-                default:
-                    cerr << "Invalid symbol: " << ch << endl;
-                    exit(1);
+            if      (ch == ';') currToken = SEMICOLON;
+            else if (ch == '=') currToken = ASSIGN;
+            else if (ch == '(') currToken = LPAREN;
+            else if (ch == ')') currToken = RPAREN;
+            else if (ch == '{') currToken = LCURL;
+            else if (ch == '}') currToken = RCURL;
+            else if (ch == '+') currToken = ADD;
+            else if (ch == '-') currToken = SUBTRACT;
+            else if (ch == '*') currToken = MULTIPLY;
+            else if (ch == '/') currToken = DIVIDE;
+            else if (ch == '%') currToken = MOD;
+            else if (ch == '<') currToken = LT;
+            else if (ch == '>') currToken = GT;
+            else {
+                // Error for invalid symbols
+                cerr << "Invalid symbol: " << ch << endl;
+                exit(1);
             }
         }
 
-        void next_token() {
+        // Advances to the next token
+        void nextToken() {
             char ch;
 
             while (file.get(ch)) {
+                // Slip whitespace
                 if (isspace(ch)) continue;
 
                 if (isalpha(ch)) {
+                    // Handle identifiers
                     handleIdentifier(ch);
                     return;
                 }
 
                 if (isdigit(ch)) {
+                    // Handle numbers
                     handleNumber(ch);
                     return;
                 }
                 
                 if (ch == '=' || ch == '*' || ch == '<' || ch == '>' || ch == '!') {
+                    // Handle multi-character tokens
                     handleMultiChar(ch);
                     return;
                 }
 
+                // Handle single-character tokens
                 handleSingleChar(ch);
                 return;
             }
 
-            curr_token = EOS;
+            // End of file reached
+            currToken = EOS;
         }
 
-        simple current_token() {
-            return curr_token;
+        // Returns the current token
+        simple currentToken() {
+            return currToken;
         }
 
-        string get_name() {
-            if (curr_token == NAME) return curr_name;
+        // Gets the current name value
+        string getName() {
+            if (currToken == NAME) return currName;
             else {
                 cerr << "Error: Current token is not a NAME" << endl;
                 exit(1);
             }
         }
 
-        int get_number() {
-            if (curr_token == NUMBER) return curr_number;
+        // Gets the current number value
+        int getNumber() {
+            if (currToken == NUMBER) return currNumber;
             else {
                 cerr << "Error: Current token is not a NUMBER" << endl;
                 exit(1);
