@@ -11,17 +11,17 @@ using namespace std;
 class Scanner {
     private:
         simple currToken; // The current token
-        int currNumber; // The value of the most recent NUMBER token
-        string currName; // The name of the most recent NAME token
-        ifstream file; // Input file stream
+        int currNumber;   // The value of the most recent NUMBER token
+        string currName;  // The name of the most recent NAME token
+        ifstream file;    // Input file stream
 
     public:
         // Constructor: Opens the specified file
-        Scanner(string f) {
-            file.open(f);
+        Scanner(const string& filename) {
+            file.open(filename);
             if (!file.is_open()) {
                 // Error if the file can't be opened
-                cerr << "Error: File not found: " << f << endl;
+                cerr << "Error: File not found: " << filename << endl;
                 exit(1);
             } else cout << "File successfully opened" << endl;
         }
@@ -70,7 +70,6 @@ class Scanner {
         void handleNumber(char firstDigit) {
             // Start building the number
             int num = firstDigit - '0';
-
             char ch;
 
             // Read until non-digit
@@ -133,7 +132,7 @@ class Scanner {
             char ch;
 
             while (file.get(ch)) {
-                // Slip whitespace
+                // Skip whitespace
                 if (isspace(ch)) continue;
 
                 if (isalpha(ch)) {
@@ -164,12 +163,12 @@ class Scanner {
         }
 
         // Returns the current token
-        simple currentToken() {
+        simple currentToken() const {
             return currToken;
         }
 
         // Gets the current name value
-        string getName() {
+        string getName() const {
             if (currToken == NAME) return currName;
             else {
                 cerr << "Error: Current token is not a NAME" << endl;
@@ -178,7 +177,7 @@ class Scanner {
         }
 
         // Gets the current number value
-        int getNumber() {
+        int getNumber() const {
             if (currToken == NUMBER) return currNumber;
             else {
                 cerr << "Error: Current token is not a NUMBER" << endl;
