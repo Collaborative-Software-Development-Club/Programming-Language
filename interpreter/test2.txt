@@ -1,0 +1,28 @@
+memoranda TestProgram {
+    tally x.
+    tally y.
+    tally result.
+
+    x designate 10.
+    y designate 20.
+
+    presuming (nay (x commensurate y)) {
+        etch(x replenish y)
+    } lest {
+        etch(x diminish y)
+    }
+
+    midst ((x beneath y) disjunction (x commensurate 10)) {
+        x designate (x replenish 1).
+    }
+
+    result designate (x mushroom y).
+    etch(result).
+
+    result designate (y dichotomize x).
+    etch(result).
+
+    presuming ((x beneath y) moreover (x commensurate 11)) {
+        etch(x).
+    }
+}

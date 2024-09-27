@@ -53,13 +53,6 @@ class Scanner {
             else if(s.compare(")") == 0){ curr_token = RPAREN;}
             else if(s.compare("{") == 0){ curr_token = LCURL;}
             else if(s.compare("}") == 0){ curr_token = RCURL;}
-            else if(s.compare("nay") == 0){ curr_token = NOT;}
-            else if(s.compare("disjunction") == 0){ curr_token = OR;}
-            else if(s.compare("moreover") == 0){ curr_token = AND;}
-            else if(s.compare("commensurate") == 0){ curr_token = EQUAL;}
-            else if(s.compare("beneath") == 0){ curr_token = LESS;}
-            else if(s.compare("replenish") == 0){ curr_token = ADD;}
-            else if(s.compare("diminish") == 0){ curr_token = SUBTRACT;}
             else if(s.compare("") == 0){ curr_token = LPAREN;}
             else {
                 cerr << "ERROR: Invalid syntax error!" << endl;
@@ -75,6 +68,13 @@ class Scanner {
             else if(s.compare("designate") == 0) { curr_token = ASSIGN;}
             else if(s.compare("mushroom") == 0){ curr_token = MULTIPLY;}
             else if(s.compare("dichotomize") == 0){ curr_token = DIVIDE;}
+            else if(s.compare("beneath") == 0){ curr_token = LESS;}
+            else if(s.compare("moreover") == 0){ curr_token = AND;}
+            else if(s.compare("commensurate") == 0){ curr_token = EQUAL;}
+            else if(s.compare("disjunction") == 0){ curr_token = OR;}
+            else if(s.compare("replenish") == 0){ curr_token = ADD;}
+            else if(s.compare("diminish") == 0){ curr_token = SUBTRACT;}
+            else if(s.compare("nay") == 0){ curr_token = NOT;}
             else if (s.compare("presuming") == 0) { curr_token = IF; }
             else if (s.compare("lest") == 0) { curr_token = ELSE; }
             else if (s.compare("midst") == 0) { curr_token = WHILE; }
