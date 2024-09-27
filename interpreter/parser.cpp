@@ -23,7 +23,7 @@ class Parser {
         }
 };
 
-static class ErrorThrow {
+class ErrorThrow {
     public:
     static constexpr const char* enum_strings[] = {
         "PROGRAM",

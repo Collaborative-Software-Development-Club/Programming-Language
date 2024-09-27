@@ -117,7 +117,6 @@ class Scanner {
             // find the next available token in the scanning stream, covert it into a token, store it
             // if a character is an invalid symbol, throw an error
             // NOTE: this will be your longest method!
-<<<<<<< Updated upstream
             string token_string = "";
             char token_c;
             while (curr_token != EOS) {
@@ -165,11 +164,6 @@ class Scanner {
                 }
                 charPointer++;
             }
-=======
-            char token = charStream[charPointer];
-            // while loop to go through each token
-            // if 
->>>>>>> Stashed changes
         }
 
         string get_name() {
