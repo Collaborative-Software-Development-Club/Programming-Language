@@ -1,0 +1,7 @@
+memoranda TestProgram {
+    tally x.
+    tally y.
+    x designate 5.
+    y designate 6.
+    etch(x mushroom y)
+}

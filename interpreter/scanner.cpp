@@ -48,7 +48,6 @@ class Scanner {
 
         bool checkSyntax(string s){
             if(s.compare("designation") == 0){ curr_token = NAME; }
-            else if(s.compare("designate") == 0) { curr_token = ASSIGN;}
             else if(s.compare(".") == 0){ curr_token = SEMICOLON;}
             else if(s.compare("(") == 0){ curr_token = LPAREN;}
             else if(s.compare(")") == 0){ curr_token = RPAREN;}
@@ -61,23 +60,21 @@ class Scanner {
             else if(s.compare("beneath") == 0){ curr_token = LESS;}
             else if(s.compare("replenish") == 0){ curr_token = ADD;}
             else if(s.compare("diminish") == 0){ curr_token = SUBTRACT;}
-            else if(s.compare("mushroom") == 0){ curr_token = MULTIPLY;}
-            else if(s.compare("dichotomize") == 0){ curr_token = DIVIDE;}
             else if(s.compare("") == 0){ curr_token = LPAREN;}
             else {
                 cerr << "ERROR: Invalid syntax error!" << endl;
                 exit(-1);
             }
-        
-        
-        
-        
+            return false;
         }   
 
         bool checkKeyword(string s){
             bool found = true;
             if (s.compare("memoranda") == 0) { curr_token = PROGRAM;}
             else if (s.compare("etch") == 0) { curr_token = PRINT; }
+            else if(s.compare("designate") == 0) { curr_token = ASSIGN;}
+            else if(s.compare("mushroom") == 0){ curr_token = MULTIPLY;}
+            else if(s.compare("dichotomize") == 0){ curr_token = DIVIDE;}
             else if (s.compare("presuming") == 0) { curr_token = IF; }
             else if (s.compare("lest") == 0) { curr_token = ELSE; }
             else if (s.compare("midst") == 0) { curr_token = WHILE; }
@@ -86,7 +83,8 @@ class Scanner {
             return found;
         
 
-        }    public:
+        }    
+        public:
         Scanner(string f) {
             // use filename argument 'f' to open the file, read characters as needed, and eventually close
             // the file stream
@@ -168,7 +166,7 @@ class Scanner {
 
         string get_name() {
             // if the current token is 'NAME', return the string value of the name, else throw an error
-            if (curr_token == 'NAME') {
+            if (curr_token == NAME) {
                 return curr_name;
             } else {
                 cout << "ERROR";
