@@ -431,38 +431,77 @@ class Expression {
         bool exists = false;
         Term t;
         Expression* e;
+        int addOrSub[2] = {0, 0};
 
         void parse() {
             t.parse();
             simple current = Parser::token_stream.current_token();
-            if(current == ADD){
-                e->parse();
-            }else if(current == SUBTRACT){
 
+            if(current == ADD){
+                Parser::token_stream.next_token();
+                e->parse();
+                addOrSub[0] = 1;
+            }else if(current == SUBTRACT){
+                Parser::token_stream.next_token();
+                e->parse();
+                addOrSub[1] = 1;
             }
 
         }
         void print() {
-
+            t.print();
+            if(addOrSub[0]){
+                cout << " + ";
+                e->print();
+            }else if(addOrSub[1]){
+                cout << " - ";
+                e->print();
+            }
+            cout << endl;
         }
 };
 
 class Term {
     public:
+        Factor f;
+        Term * t;
+        int mOrD[2] = {0, 0};
+
         bool exists = false;
         void parse() {
-
+            f.parse();
+            
+            simple current = Parser::token_stream.current_token();
+            if(current == MULTIPLY){
+                Parser::token_stream.next_token();
+                t->parse();
+                mOrD[0] = 1;
+                t->exists = true;
+            }else if(current == SUBTRACT){
+                Parser::token_stream.next_token();
+                t->parse();
+                t->exists = true;
+                mOrD[1] = 1;
+            }
         }
         void print() {
-
+            f.print();
+            if(mOrD[0]){
+                cout << " * ";
+                t->print();
+            }else if(mOrD[1]){
+                cout << " / ";
+                t->print();
+            }
+            cout << endl;
         }
 };
-
+ 
 class Factor {
     public:
         bool exists = false;
         void parse() {
-
+            
         }
         void print() {
 
