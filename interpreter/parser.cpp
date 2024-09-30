@@ -317,7 +317,7 @@ class If {
                 //then there was an else statement!
                 cout<<"else (";
                 ss2.print();
-                cout << ")";
+                cout << ")" << endl;
             }
         }
 };
@@ -325,21 +325,70 @@ class If {
 class Loop {
     public:
         bool exists = false;
-        void parse() {
 
+        Condition c;
+        StatementSeq ss;
+
+        void parse() {
+            //<loop> ::= WHILE <condition> LCURL <statement-seq> RCURL
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), WHILE);
+            Parser::token_stream.next_token();
+            c.parse();
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), LCURL);
+            Parser::token_stream.next_token();
+            ss.parse();
+            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), RCURL);
+            Parser::token_stream.next_token();
+            
         }
         void print() {
-
+            cout << "while ";
+            c.print();
+            cout << "(";
+            ss.print();
+            cout << ")" << endl;
         }
 };
 
+//SEEMS TO BE WRONG HERE>>>>> FIX???
 class Condition {
+    //<condition> ::= <compare> | NOT <condition> | <compare> OR <condition> | <compare> AND <condition>
+
     public:
         bool exists = false;
-        void parse() {
+        Compare comp;
+        bool isAnd = 0;
+        bool isOr = 0;
+        bool isNot = 0;
 
+        void parse() {
+            simple current = Parser::token_stream.current_token();
+            if(current == NAME){
+                //then the token is a compare type!
+                //Inside here, we have three options! 
+                    //Compare and/or condition 
+                    // compare only.
+                comp.parse();
+                current = Parser::token_stream.current_token(); //see if there's an AND/OR
+                if(current == AND){
+                    isAnd = 1;
+                    parse();
+                }else if(current == OR){
+                    isOr = 1;
+                    parse();
+                }
+            }else if(current == NOT){
+                //not then condition!
+                isNot = 1;
+                parse();
+            }
         }
         void print() {
+            if(isAnd){
+                comp.print();
+                cout << " and ";
+                print(); //This does NOT seem right....
+            }
 
         }
 };
@@ -347,11 +396,32 @@ class Condition {
 class Compare {
     public:
         bool exists = false;
+        Expression e1;
+        Expression e2;
+        int equalsOrNot = 0;
+
         void parse() {
+            e1.parse();
+            simple current = Parser::token_stream.current_token();
+            if(current == EQUAL){
+                Parser::token_stream.next_token();
+                e2.parse();
+                equalsOrNot = 1;
+            }else{
+                ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), LESS);
+                Parser::token_stream.next_token();
+                e2.parse();
+            }
 
         }
         void print() {
-
+            e1.print();
+            if(equalsOrNot){
+                cout<<" = ";
+            }else{
+                cout << " < ";
+            }
+            e2.print();
         }
 };
 
