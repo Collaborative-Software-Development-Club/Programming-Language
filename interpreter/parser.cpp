@@ -360,6 +360,7 @@ class Condition {
         bool isAnd = 0;
         bool isOr = 0;
         bool isNot = 0;
+        Condition* c2;
 
         void parse() {
             simple current = Parser::token_stream.current_token();
@@ -372,22 +373,22 @@ class Condition {
                 current = Parser::token_stream.current_token(); //see if there's an AND/OR
                 if(current == AND){
                     isAnd = 1;
-                    parse();
+                    c2->parse();
                 }else if(current == OR){
                     isOr = 1;
-                    parse();
+                    c2->parse();
                 }
             }else if(current == NOT){
                 //not then condition!
                 isNot = 1;
-                parse();
+                c2->parse();
             }
         }
         void print() {
             if(isAnd){
                 comp.print();
                 cout << " and ";
-                print(); //This does NOT seem right....
+                c2->print(); //This does NOT seem right....
             }
 
         }
@@ -428,7 +429,17 @@ class Compare {
 class Expression {
     public:
         bool exists = false;
+        Term t;
+        Expression* e;
+
         void parse() {
+            t.parse();
+            simple current = Parser::token_stream.current_token();
+            if(current == ADD){
+                e->parse();
+            }else if(current == SUBTRACT){
+
+            }
 
         }
         void print() {

@@ -193,6 +193,10 @@ class Scanner {
                 exit(0);
             }
         }
+        int main(){
+            Scanner s("test01.txt");
+            return 0;
+        }
 };
 
 #endif
