@@ -1,3 +1,10 @@
+#include <iostream>
+#include <string>
+#include "../scanner.cpp"
+#include <vector>
+#include "expression.cpp"
+#include "../parser.cpp"
+
 class Factor {
     public:
         bool exists = false;
@@ -20,7 +27,7 @@ class Factor {
                     ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), RPAREN);
                     Parser::token_stream.next_token();
                     break;
-                case default:
+                default:
                     cout << "The token was not a NAME, NUMBER, or LPAREN..." << endl;
                     ErrorThrow::throw_compile_exception(EOS, ADD);
                     break;
