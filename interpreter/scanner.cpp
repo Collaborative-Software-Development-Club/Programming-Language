@@ -84,13 +84,15 @@ class Scanner {
         
 
         }    
-        public:
+    public:
         Scanner(string f) {
             // use filename argument 'f' to open the file, read characters as needed, and eventually close
             // the file stream
 
-            ifstream filestream(f);
+            ifstream filestream;
             string currentLine;
+
+            filestream.open(f);
 
             if(!filestream.is_open()){
                 cerr << "FILE OPEN FAILED" << endl;

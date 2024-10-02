@@ -2,6 +2,7 @@
 #include <string>
 #include "scanner.cpp"
 #include "simple.cpp"
+#include "parser.cpp"
 
 using namespace std;
 
@@ -38,8 +39,12 @@ string tokenToString(simple token) {
 }
 
 int main(int argc, char* argv[]) {
-    if (argc > 1) {
-        Scanner s (argv[1]);
+    if (argc >= 0) {
+        
+        //DEBUG: 
+        char str[] = "test2.txt";
+
+        Scanner s (str);
         s.next_token();
         while (s.current_token() != EOS) {
             cout << tokenToString(s.current_token()) << endl;
@@ -48,6 +53,14 @@ int main(int argc, char* argv[]) {
             }
             s.next_token();
         }
+        
+        Parser::initialize_parser(str);
+        Parser::parse_all();
+        Parser::print_all();
+
+
+
+
 
         return 0;
     } else { // in case our code has no arguments

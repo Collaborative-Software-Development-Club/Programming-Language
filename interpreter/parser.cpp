@@ -7,7 +7,6 @@ using namespace std;
 
 #ifndef PARSER_H
 #define PARSER_H
-
 class Parser {
     public:
         static Scanner token_stream;
@@ -186,9 +185,12 @@ class Statement {
                 case PRINT:
                     p.parse();
                     break;
-                case :
-
-                
+                case NUM:
+                    d.parse();
+                    break;
+                default:
+                    ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), NUM);
+                    cout << "Incorrect syntax\n";
             }
         }
         
