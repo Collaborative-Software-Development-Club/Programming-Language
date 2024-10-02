@@ -101,9 +101,15 @@ class Program { // the first non-terminal of Simple. it has been done for you to
 class StatementSeq {
     public:
         bool exists = false;
+        Statement s;
+        StatementSeq* ss;
         void parse() {
             // hint for parsing statementseq: we KNOW that in any case, statement will be parsed.
             // the trick is finding out if statementseq needs parsed again (check your statement code)
+            s.parse();
+            if (Parser::token_stream.current_token() == NAME || Parser::token_stream.current_token() == IF || Parser::token_stream.current_token() == WHILE || Parser::token_stream.current_token() == NUM || Parser::token_stream.current_token() == PRINT) {
+                ss->parse();
+            }
         }
         void print() {
 
