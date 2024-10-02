@@ -159,12 +159,40 @@ class DeclareNum {
 };
 
 class Statement {
+    Assign a; 
+    If i; 
+    Loop l; 
+    Print p; 
+    Declare d; 
+
     public:
         bool exists = false;
         void parse() {
             // hint for statement: there are 5 non-terminals here! how do we determine which we need?
             // (look at what the next terminal COULD be) 
+            exists = true;
+            //if(Parser::token_stream.current_token() == NAME || Parser::token_stream.current_token() == IF || Parser::token_stream.current_token() == WHILE || Parser::token_stream.current_token() == PRINT) {
+
+            switch(Parser::token_stream.current_token()){
+                case NAME:
+                    a.parse();
+                    break;
+                case IF:
+                    i.parse();
+                    break;
+                case WHILE:
+                    l.parse();
+                    break;
+                case PRINT:
+                    p.parse();
+                    break;
+                case :
+
+                
+            }
         }
+        
+        
         void print() {
 
         }
