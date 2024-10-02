@@ -2,11 +2,27 @@
 #include <string>
 #include "scanner.cpp"
 #include <vector>
+#include "assign.h"
+#include "compare.h"
+#include "condition.h"
+#include "declare.h"
+#include "expression.h"
+#include "factor.h"
+#include "if.h"
+#include "loop.h"
+#include "print.h"
+#include "program.h"
+#include "statement.h"
+#include "statementseq.h"
+#include "term.h"
 
 using namespace std;
 
 #ifndef PARSER_H
 #define PARSER_H
+
+
+
 class Parser {
     public:
         static Scanner token_stream;
