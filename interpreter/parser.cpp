@@ -2,19 +2,19 @@
 #include <string>
 #include "scanner.cpp"
 #include <vector>
-#include "assign.h"
-#include "compare.h"
-#include "condition.h"
-#include "declare.h"
-#include "expression.h"
-#include "factor.h"
-#include "if.h"
-#include "loop.h"
-#include "print.h"
-#include "program.h"
-#include "statement.h"
-#include "statementseq.h"
-#include "term.h"
+#include "./classes/headers/assign.h"
+#include "./classes/headers/compare.h"
+#include "./classes/headers/condition.h"
+#include "./classes/headers/declare.h"
+#include "./classes/headers/expression.h"
+#include "./classes/headers/factor.h"
+#include "./classes/headers/if.h"
+#include "./classes/headers/loop.h"
+#include "./classes/headers/print.h"
+#include "./classes/headers/program.h"
+#include "./classes/headers/statement.h"
+#include "./classes/headers/statementseq.h"
+#include "./classes/headers/term.h"
 
 using namespace std;
 
