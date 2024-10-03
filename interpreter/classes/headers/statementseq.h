@@ -1,11 +1,11 @@
 #ifndef STATEMENTSEQ_H
 #define STATEMENTSEQ_H
 
-#include "statement.h"
+//#include "statement.h"
 
 class StatementSeq {
 private:
-    Statement statement; // Pointer to individual statement object
+    //Statement statement; // Pointer to individual statement object
 
 public:
     void parse();

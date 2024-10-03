@@ -1,0 +1,6 @@
+program p {
+    num x;
+    while (x == 1) {
+        x = 3;
+    }
+}
