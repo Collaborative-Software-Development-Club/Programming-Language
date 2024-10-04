@@ -35,12 +35,14 @@ void Parser::consume() {
 
 int Parser::get_num() {
     if (token_stream) {
-        token_stream.value().get_number();
+        return token_stream.value().get_number();
     }
+    else return -1;
 }
 
 string Parser::get_name() {
     if (token_stream) {
-        token_stream.value().get_name();
+        return token_stream.value().get_name();
     }
+    else return "";
 }

@@ -126,7 +126,6 @@ using namespace std;
             token_c = char_stream[char_pointer];
             if (static_cast<size_t>(char_pointer) != char_stream.size() && token_c != ' ' && token_c != '\n' && token_c != '\0' && token_c != '\t') { // checking for any potential whitespace
                 token_string += string(1, token_c); // if not whitespace, append to string
-                cout << token_string;
                 if (!isdigit(char_stream[char_pointer + 1]) && !isalpha(char_stream[char_pointer + 1]) && keyword_check(token_string)) {
                     // if the current word looks like a keyword and has nothing leading it, it's a keyword
                     char_pointer++;
