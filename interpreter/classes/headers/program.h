@@ -6,8 +6,8 @@
 
 class Program {
 private:
-    StatementSeq statementSeq; // Sequence of statements
-    std::string programName;
+    StatementSeq ss; // Sequence of statements
+    std::string program_name;
 
 public:
     void parse();

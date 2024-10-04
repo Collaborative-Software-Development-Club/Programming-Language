@@ -9,17 +9,29 @@
 class Parser {
 public:
      std::optional<Scanner> token_stream;
-    // Initializes the parser with a file name
+     Program p;
+    // initializes the parser with a file name
     void initialize_parser(std::string f);
 
-    // Parse the entire program
+    // parse the entire program
     void parse_all();
 
-    // Print the parsed program
+    // print the parsed program
     void print_all();
+
+    // check for grammatical error
+    void check(simple check);
+
+    // consume value
+    void consume();
+
+    // get the int/num value
+    int get_num();
+
+    // get the name/string value
+    std::string get_name();
 };
 
-// Declare a global Parser object that will be defined elsewhere.
 extern Parser global_parser; 
 
-#endif // PARSER_H
+#endif
