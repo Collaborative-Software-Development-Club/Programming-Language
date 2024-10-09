@@ -1,10 +1,12 @@
-class DeclareNum {
-    public:
-        bool exists = false;
-        void parse() {
+#include "headers/declarenum.h"
+#include "../simple.cpp"
+#include "headers/globals.h"
+#include <iostream>
 
-        }
-        void print() {
+void DeclareNum::parse() {
 
-        }
-};
+}
+
+void DeclareNum::print() {
+    
+}

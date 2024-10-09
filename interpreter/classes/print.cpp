@@ -1,10 +1,12 @@
-class Print {
-    public:
-        bool exists = false;
-        void parse() {
+#include "headers/print.h"
+#include "../simple.cpp"
+#include "headers/globals.h"
+#include <iostream>
 
-        }
-        void print() {
+void Print::parse() {
 
-        }
-};
+}
+
+void Print::print() {
+    
+}

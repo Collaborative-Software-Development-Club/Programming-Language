@@ -1,10 +1,12 @@
-class Factor {
-    public:
-        bool exists = false;
-        void parse() {
+#include "headers/factor.h"
+#include "../simple.cpp"
+#include "headers/globals.h"
+#include <iostream>
 
-        }
-        void print() {
+void Factor::parse() {
 
-        }
-};
+}
+
+void Factor::print() {
+    
+}

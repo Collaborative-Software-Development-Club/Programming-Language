@@ -8,6 +8,7 @@
 #include "declare.h"
 
 class Statement {
+private:
     Assign assign;
     If ifBlock;
     Loop loop;

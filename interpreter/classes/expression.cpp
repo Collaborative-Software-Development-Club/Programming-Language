@@ -1,10 +1,12 @@
-class Expression {
-    public:
-        bool exists = false;
-        void parse() {
+#include "headers/expression.h"
+#include "../simple.cpp"
+#include "headers/globals.h"
+#include <iostream>
 
-        }
-        void print() {
+void Expression::parse() {
 
-        }
-};
+}
+
+void Expression::print() {
+    
+}

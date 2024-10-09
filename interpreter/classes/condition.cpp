@@ -1,10 +1,12 @@
-class Condition {
-    public:
-        bool exists = false;
-        void parse() {
+#include "headers/condition.h"
+#include "../simple.cpp"
+#include "headers/globals.h"
+#include <iostream>
 
-        }
-        void print() {
+void Condition::parse() {
 
-        }
-};
+}
+
+void Condition::print() {
+    
+}

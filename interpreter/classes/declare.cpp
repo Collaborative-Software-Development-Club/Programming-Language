@@ -1,10 +1,12 @@
-class Declare {
-    public:
-        bool exists = false;
-        void parse() {
+#include "headers/declare.h"
+#include "../simple.cpp"
+#include "headers/globals.h"
+#include <iostream>
 
-        }
-        void print() {
+void Declare::parse() {
 
-        }
-};
+}
+
+void Declare::print() {
+    
+}

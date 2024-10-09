@@ -1,10 +1,12 @@
-class If {
-    public:
-        bool exists = false;
-        void parse() {
+#include "headers/if.h"
+#include "../simple.cpp"
+#include "headers/globals.h"
+#include <iostream>
 
-        }
-        void print() {
+void If::parse() {
 
-        }
-};
+}
+
+void If::print() {
+    
+}

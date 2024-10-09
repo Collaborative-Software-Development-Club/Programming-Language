@@ -3,7 +3,7 @@
 
 #include <string>
 
-class Expression; // Forward declaration
+class Expression;
 
 class Factor {
 private:

@@ -1,10 +1,12 @@
-class Loop {
-    public:
-        bool exists = false;
-        void parse() {
+#include "headers/loop.h"
+#include "../simple.cpp"
+#include "headers/globals.h"
+#include <iostream>
 
-        }
-        void print() {
+void Loop::parse() {
 
-        }
-};
+}
+
+void Loop::print() {
+    
+}

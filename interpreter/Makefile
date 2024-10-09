@@ -10,7 +10,7 @@ CXXFLAGS = -std=c++17 -Wall
 SRC = classes/program.cpp classes/statementseq.cpp main.cpp parser.cpp scanner.cpp 
 
 # Output executable
-TARGET = language
+TARGET = interpreter
 
 # Default target
 all: $(TARGET)

@@ -1,10 +1,12 @@
-class Term {
-    public:
-        bool exists = false;
-        void parse() {
+#include "headers/term.h"
+#include "../simple.cpp"
+#include "headers/globals.h"
+#include <iostream>
 
-        }
-        void print() {
+void Term::parse() {
 
-        }
-};
+}
+
+void Term::print() {
+    
+}

@@ -1,10 +1,12 @@
-class Assign {
-    public:
-        bool exists = false;
-        void parse() {
+#include "headers/assign.h"
+#include "../simple.cpp"
+#include "headers/globals.h"
+#include <iostream>
 
-        }
-        void print() {
+void Assign::parse() {
 
-        }
-};
+}
+
+void Assign::print() {
+    
+}
