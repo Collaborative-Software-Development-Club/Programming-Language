@@ -5,7 +5,7 @@
 
 class Declare {
 private:
-    DeclareNum dm;
+    DeclareNum dn;
 public:
     void parse();
     void print();

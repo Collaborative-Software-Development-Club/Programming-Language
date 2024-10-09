@@ -1,11 +1,11 @@
 #ifndef DECLARENUM_H
 #define DECLARENUM_H
 
-#include "declarenum.h"
+#include <string>
 
 class DeclareNum {
 private:
-    int num;
+    std::string name;
 public:
     void parse();
     void print();

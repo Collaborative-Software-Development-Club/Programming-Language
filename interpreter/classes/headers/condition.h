@@ -6,7 +6,7 @@
 class Condition {
 private:
     Compare compare; // Pointer to hold comparison
-
+    Condition* cnd;
 public:
     void parse();
     void print();

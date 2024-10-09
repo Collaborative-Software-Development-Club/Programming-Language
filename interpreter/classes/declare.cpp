@@ -4,9 +4,9 @@
 #include <iostream>
 
 void Declare::parse() {
-
+    dn.parse();
 }
 
 void Declare::print() {
-    
+    dn.print();
 }
