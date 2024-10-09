@@ -17,7 +17,7 @@ void Program::parse() {
     global_parser.check(LCURL);
     global_parser.consume();
 
-    // ss.parse();
+    ss.parse();
 
     global_parser.check(RCURL);
     global_parser.consume();
