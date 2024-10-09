@@ -4,6 +4,7 @@
 #include <iostream>
 
 void Statement::parse() {
+    statementype = -1;
     //statement type keeps track of what is used for printing...
 
     simple token = global_parser.token_stream.value().current_token();
