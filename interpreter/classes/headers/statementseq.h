@@ -7,10 +7,11 @@ class StatementSeq {
 private:
     Statement statement; // Pointer to individual statement object
     StatementSeq * ss;
+    bool recursive; 
+
 public:
     void parse();
     void print();
-    bool recursive; 
 };
 
 #endif // STATEMENTSEQ_H
