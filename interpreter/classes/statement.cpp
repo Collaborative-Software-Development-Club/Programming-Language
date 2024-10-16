@@ -7,6 +7,7 @@ void Statement::parse() {
     std::cout << "entered s" << std::endl;
     int curr = global_parser.token_stream.value().current_token();
     if (curr == NAME) {
+        std::cout << "entered assign" << std::endl;
         statementType = 0;
         assign.parse();
     }
