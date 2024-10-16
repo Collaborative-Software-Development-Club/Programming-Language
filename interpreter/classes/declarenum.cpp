@@ -16,5 +16,4 @@ void DeclareNum::parse(){
 
 void DeclareNum::print(){
     std::cout << "num " << name << ";" << std::endl;
-
 }

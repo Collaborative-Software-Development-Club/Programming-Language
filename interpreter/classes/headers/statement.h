@@ -11,8 +11,10 @@ class Statement {
     Assign assign;
     If ifBlock;
     Loop loop;
-    Print print;
+    Print print1;
     Declare declare;
+    int type; 
+
 
 public:
     void parse();
