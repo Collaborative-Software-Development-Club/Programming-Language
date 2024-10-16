@@ -65,14 +65,23 @@ class Scanner {
 
                             }else if(c == '+' || c == '-' || c == '*' || c == '/' || c == '!' || c == ';'){
                                 //push the token (number)
-                                                    //TODO add case for c == '&&' || c == '||'
                                 if(token.size() > 0){
                                     q.push(token);
                                     token = "";
                                     tokenSize = 0;
                                 }
                                 //push the operand!
-                                q.push(string(1, c));
+                                if(i+1 <= line.length()){
+                                    if (c == '&' && line[i+1] == '&'){
+                                        //AND case...
+                                        q.push(string(2, line[i]));
+                                    }else if (c == '|' && line[i+1] == '|'){
+                                        //OR case...
+                                        q.push(string(2, line[i]));
+                                    }
+                                }else{
+                                    q.push(string(1, c));
+                                }
                             }else{ // the token is not a parenthesis or curly brace case or whatever else!
 
                                 token += c;
