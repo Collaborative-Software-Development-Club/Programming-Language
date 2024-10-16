@@ -6,6 +6,7 @@
 class StatementSeq {
 private:
     Statement statement; // Pointer to individual statement object
+    StatementSeq* ss2;
 public:
     void parse();
     void print();

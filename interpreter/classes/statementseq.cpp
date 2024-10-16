@@ -10,7 +10,7 @@ void StatementSeq::parse() {
     simple currentToken = global_parser.token_stream.value().current_token();
     if(currentToken == NAME || currentToken == IF || currentToken == WHILE || currentToken == PRINT || currentToken == NUM){
         //Then we have a statement sequence!
-        StatementSeq::parse();
+        ss2->parse();
     }
 
 }
