@@ -6,14 +6,17 @@
 using namespace std;
 
 // Define the global Parser object
-Parser global_parser;
+Parser global_parser; //class defined in the class headers file.
 
-void Parser::initialize_parser(std::string f) {
-    token_stream = Scanner(f);
+//these functions actually initialize the functions declared in the header file...
+//define the functions for the Parser class...
+void Parser::initialize_parser(std::string f) { //f is the file to be scanned.
+    token_stream = Scanner(f); //defines the token_stream from the header file.
 }
 
 void Parser::parse_all() {
     p.parse(); // Call parse on the program object
+    //called on program as its the start of the parseTree!
 }
 
 void Parser::print_all() {
@@ -30,6 +33,8 @@ void Parser::check(simple check) {
 void Parser::consume() {
     if (token_stream) {
         token_stream.value().next_token();
+    }else{
+        cout <<"OUT OF TOKENS!" << endl;
     }
 }
 
