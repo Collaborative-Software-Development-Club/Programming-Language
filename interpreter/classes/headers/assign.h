@@ -5,6 +5,7 @@
 
 class Assign {
 private:
+    std::string name = "";
     Expression expression; // Pointer to hold expression
 
 public:

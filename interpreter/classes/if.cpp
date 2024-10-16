@@ -40,5 +40,4 @@ void If::print() {
         statementSeq2.print();
         std::cout << ")" << std::endl;
     }
-    
 }

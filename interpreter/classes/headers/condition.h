@@ -5,8 +5,10 @@
 
 class Condition {
 private:
+    int caseType = 1;
     Compare compare; // Pointer to hold comparison
-
+    Condition* cond2;
+    std::string name = "";
 public:
     void parse();
     void print();

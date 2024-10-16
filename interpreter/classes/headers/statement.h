@@ -12,8 +12,9 @@ private:
     Assign assign;
     If ifBlock;
     Loop loop;
-    Print print;
+    Print prints;
     Declare declare;
+    int statementype = -1;
 
 public:
     void parse();
