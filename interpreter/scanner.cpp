@@ -22,6 +22,7 @@ class Scanner {
 
 
     public:
+
         Scanner(string f) {
             // use filename argument 'f' to open the file, read characters as needed, and eventually close
             // the file stream
@@ -30,43 +31,62 @@ class Scanner {
 
             if(file.is_open()){
                 cout << "Whoopie it opened!" << endl;
-                queue<string> q;    //Make a new queue. Parently this is it....
                 
                 //now read in any available input.
                 string line;
                 string token = "";
                 int tokenSize = 0;
+
                 while(getline(file, line)){
                     //line now holds a line of input from the file.
 
                     //go over each character in the line.
                     for(int i = 0; i < line.length(); i++){
+
                         char c = line[i];
 
                         //check if the character is part of the current token.
                         //TODO check this
-                        if(c != ' '){
+                        if(c != ' '){ 
+
                             if((c == '(') || (c == '{')){
                                 //this is the case of a special circ. token!
-                                q.push(""+c); //Push the (/{ as it's own token!
+                                q.push(string(1, c)); //Push the (/{ as it's own token!
                             }else if((c == ')') || (c == '}')){
                                 //the }/) came at the end of something else...
+
                                 if(token.size() > 0){
                                     q.push(token);
                                     token = "";
                                     tokenSize = 0;
                                 }
-                                q.push(""+c); //end of the token...
-                            }else{
+                                
+                                q.push(string(1, c)); //end of the token...
+
+                            }else if(c == '+' || c == '-' || c == '*' || c == '/' || c == '!' || c == ';'){
+                                //push the token (number)
+                                                    //TODO add case for c == '&&' || c == '||'
+                                if(token.size() > 0){
+                                    q.push(token);
+                                    token = "";
+                                    tokenSize = 0;
+                                }
+                                //push the operand!
+                                q.push(string(1, c));
+                            }else{ // the token is not a parenthesis or curly brace case or whatever else!
+
                                 token += c;
                                 tokenSize++;
+
                             }
                             
-                        }else{
-                            //if not, we have a new token to get!
-                            q.push(token);
-                            token = "";
-                            tokenSize = 0;
+                        }else{ //space case!
+                            //if the current char is a space, then there could possibly a token we were making!
+                            if(token.size() != 0){
+                                q.push(token);
+                                token = "";
+                                tokenSize = 0;
+                            }
                         }
                     }
                 }
@@ -74,8 +94,13 @@ class Scanner {
                 //By here all words in the file have been turned to tokens...
 
                 //check for leftover tokens if the file ended.
-                if(token != ""){
+                if(token.size() > 0){
                     q.push(token);
+                }
+
+                while (q.size() > 0){
+                    cout << q.front() << endl;
+                    q.pop();
                 }
 
             }else{
@@ -92,19 +117,19 @@ class Scanner {
         }
 
         int is_num(string token){
-            int num = 1;
+            bool isOk = true;
             string numbers = "0123456789";
                 for(char c : token){
                     if (!numbers.find(c)){
-                        num = 0;
+                        isOk = false;
                         break;
                     }
                 }
-                if(num){
+                if(isOk){
                     curr_token = NUMBER;
                     curr_number = stoi(token);
                 }
-            return num;
+            return isOk;
         }
 
         void next_token() {
@@ -193,10 +218,7 @@ class Scanner {
                 exit(0);
             }
         }
-        int main(){
-            Scanner s("test01.txt");
-            return 0;
-        }
+        
 };
 
 #endif
