@@ -7,11 +7,13 @@
 #include "print.h"
 #include "declare.h"
 
+class If;
+class Loop;
 class Statement {
 private:
     Assign assign;
-    If ifBlock;
-    Loop loop;
+    If* ifBlock;
+    Loop* loop;
     Print printS;
     Declare declare;
     int statementType = -1;

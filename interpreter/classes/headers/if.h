@@ -4,11 +4,12 @@
 #include "condition.h"
 #include "statementseq.h"
 
+class StatementSeq;
 class If {
 private:
     Condition condition; // Pointer to hold condition
-    StatementSeq statementSeq; // Pointer to sequence of statements
-    StatementSeq statementSeq2;
+    StatementSeq* statementSeq; // Pointer to sequence of statements
+    StatementSeq* statementSeq2;
     bool hasElse = false;
 
 public:

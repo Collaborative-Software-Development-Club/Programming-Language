@@ -4,18 +4,39 @@
 #include <iostream>
 
 void Statement::parse() {
-    switch(global_parser.token_stream.value().current_token()) {
-        case NAME:
+    std::cout << "entered s" << std::endl;
+    int curr = global_parser.token_stream.value().current_token();
+    if (curr == NAME) {
         statementType = 0;
         assign.parse();
+    }
+    else if (curr == IF) {
+
+    }
+    else if (curr == WHILE) {
+
+    }
+    else if (curr == PRINT) {
+
+    }
+    else if (curr == NUM) {
+
+    }
+    else {
+        std::cout << "ERROR: Expected NAME, IF, WHILE, PRINT, OR NUM!" << std::endl;
+        exit(-1);
+    }
+    switch(curr) {
+        case NAME:
+        
         break;
         case IF:
         statementType = 1;
-        ifBlock.parse();
+        ifBlock->parse();
         break;
         case WHILE:
         statementType = 2;
-        loop.parse();
+        loop->parse();
         break;
         case PRINT:
         statementType = 3;
@@ -26,6 +47,8 @@ void Statement::parse() {
         declare.parse();
         break;
         default:
+        std::cout << "ERROR: Expected NAME, IF, WHILE, PRINT, OR NUM!" << std::endl;
+        exit(-1);
         break;
     }
 }
@@ -36,10 +59,10 @@ void Statement::print() {
         assign.print();
         break;
         case 1:
-        ifBlock.print();
+        ifBlock->print();
         break;
         case 2:
-        loop.print();
+        loop->print();
         break;
         case 3:
         printS.print();

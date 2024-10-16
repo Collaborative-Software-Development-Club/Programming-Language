@@ -9,7 +9,7 @@ void If::parse() {
     condition.parse();
     global_parser.check(LCURL);
     global_parser.consume();
-    statementSeq.parse();
+    statementSeq->parse();
     global_parser.check(RCURL);
     global_parser.consume();
     if (global_parser.token_stream.value().current_token() == ELSE) {
@@ -18,7 +18,7 @@ void If::parse() {
         global_parser.consume();
         global_parser.check(LCURL);
         global_parser.consume();
-        statementSeq2.parse();
+        statementSeq2->parse();
         global_parser.check(RCURL);
         global_parser.consume();
     }
@@ -28,12 +28,12 @@ void If::print() {
     std::cout << "if ";
     condition.print();
     std::cout << " {" << std::endl;
-    statementSeq.print();
+    statementSeq->print();
     std::cout << "}" << std::endl;
     if (hasElse) {
         std::cout << "else ";
         std::cout << " {" << std::endl;
-        statementSeq2.print();
+        statementSeq2->print();
         std::cout << "}" << std::endl;
     }
 }

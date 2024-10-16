@@ -3,10 +3,11 @@
 
 #include "statement.h"
 
+class Statement;
 class StatementSeq {
 private:
     StatementSeq* ss;
-    Statement s; // Pointer to individual statement object
+    Statement* s; // Pointer to individual statement object
 public:
     void parse();
     void print();

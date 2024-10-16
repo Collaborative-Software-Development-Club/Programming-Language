@@ -9,7 +9,7 @@ void Loop::parse() {
     condition.parse();
     global_parser.check(LCURL);
     global_parser.consume();
-    statementSeq.parse();
+    statementSeq->parse();
     global_parser.check(RCURL);
     global_parser.consume();
 }
@@ -18,6 +18,6 @@ void Loop::print() {
     std::cout << "while ";
     condition.print();
     std::cout << " {" << std::endl;
-    statementSeq.print(); 
+    statementSeq->print(); 
     std::cout << "}" << std::endl;
 }

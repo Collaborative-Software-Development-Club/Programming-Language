@@ -7,10 +7,10 @@ class Expression;
 
 class Factor {
 private:
-    std::string name; // Variable name (if applicable)
-    double value;     // Numeric value (if applicable)
+    std::string name = ""; // Variable name (if applicable)
+    int num = -1;     // Numeric value (if applicable)
     Expression* expression; // Pointer to hold expression in parentheses
-
+    int factorType = -1;
 public:
     void parse();
     void print();

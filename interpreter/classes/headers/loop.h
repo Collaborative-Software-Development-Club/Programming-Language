@@ -4,10 +4,11 @@
 #include "condition.h"
 #include "statementseq.h"
 
+class StatementSeq;
 class Loop {
 private:
     Condition condition; // Pointer to hold condition
-    StatementSeq statementSeq; // Pointer to sequence of statements
+    StatementSeq* statementSeq; // Pointer to sequence of statements
 
 public:
     void parse();

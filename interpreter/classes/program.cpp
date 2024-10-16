@@ -24,6 +24,6 @@ void Program::parse() {
 }
 void Program::print() {
     cout << "program " << program_name << " { " << endl;
-    ss.print();
+    //ss.print();
     cout << "}" << endl;
 }
