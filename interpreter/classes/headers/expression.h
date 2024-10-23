@@ -6,7 +6,8 @@
 class Expression {
 private:
     Term term; // Pointer to hold term
-
+    Expression * ex_ptr;
+    int t;
 public:
     void parse();
     void print();

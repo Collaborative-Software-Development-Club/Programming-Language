@@ -16,7 +16,7 @@ void Print::parse() {
 }
 
 void Print::print() {
-    std::cout << "print(";
+    std::cout << "etch(";
     expression.print();
-    std::cout << ");" << std::endl;
+    std::cout << ")." << std::endl;
 }

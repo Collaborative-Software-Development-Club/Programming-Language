@@ -6,7 +6,8 @@
 class Compare {
 private:
     Expression expression; // Pointer to hold expression
-
+    Expression expression2;
+    bool isLess = false; 
 public:
     void parse();
     void print();

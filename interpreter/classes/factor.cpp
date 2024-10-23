@@ -26,11 +26,11 @@ void Factor::parse(){
 }
 
 void Factor::print(){
-     if (factorType == 0) {
+     if (type == 0) {
         std::cout << name;
     }
-    else if (factorType == 1) {
-        std::cout << num;
+    else if (type == 1) {
+        std::cout << value;
     }
     else {
         std::cout << "(";

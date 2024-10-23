@@ -8,7 +8,8 @@ class If {
 private:
     Condition condition; // Pointer to hold condition
     StatementSeq statementSeq; // Pointer to sequence of statements
-
+    StatementSeq statementSeq2; 
+    int type; 
 public:
     void parse();
     void print();
