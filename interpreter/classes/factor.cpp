@@ -9,7 +9,7 @@ void Factor::parse() {
         name = global_parser.get_name();
         global_parser.consume();
     }
-    else if (global_parser.token_stream.value().current_token() == SUBTRACT) {
+    else if (global_parser.token_stream.value().current_token() == NUMBER) {
         factorType = 1;
         num = global_parser.get_num();
         global_parser.consume();
