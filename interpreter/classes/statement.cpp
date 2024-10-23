@@ -8,8 +8,9 @@ void Statement::parse() {
     int curr = global_parser.token_stream.value().current_token();
     if (curr == NAME) {
         std::cout << "entered assign" << std::endl;
-        statementType = 0;
-        assign.parse();
+        //statementType = 0;
+        //assign->parse();
+        std::cout << "done assign" << std::endl;
     }
     else if (curr == IF) {
 
@@ -57,7 +58,7 @@ void Statement::parse() {
 void Statement::print() {
     switch(statementType) {
         case 0:
-        assign.print();
+        assign->print();
         break;
         case 1:
         ifBlock->print();

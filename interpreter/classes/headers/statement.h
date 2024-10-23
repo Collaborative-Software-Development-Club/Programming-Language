@@ -11,7 +11,7 @@ class If;
 class Loop;
 class Statement {
 private:
-    Assign assign;
+    Assign* assign;
     If* ifBlock;
     Loop* loop;
     Print printS;
