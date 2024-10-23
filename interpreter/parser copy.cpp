@@ -156,12 +156,12 @@ class DeclareNum {
         void parse() {
             exists = true;
 
-            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), NUM);
-            Parser::token_stream.next_token();
-            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), NAME);
-            var_name = Parser::token_stream.get_name();
-            Parser::token_stream.next_token();
-            ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), SEMICOLON);
+                ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), NUM);
+                Parser::token_stream.next_token();
+                ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), NAME);
+                var_name = Parser::token_stream.get_name();
+                Parser::token_stream.next_token();
+                ErrorThrow::throw_compile_exception(Parser::token_stream.current_token(), SEMICOLON);
             Parser::token_stream.next_token();
 
 

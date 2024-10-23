@@ -10,7 +10,7 @@ private:
     std::string name; // Variable name (if applicable)
     double value;     // Numeric value (if applicable)
     Expression* expression; // Pointer to hold expression in parentheses
-
+    int type; 
 public:
     void parse();
     void print();
