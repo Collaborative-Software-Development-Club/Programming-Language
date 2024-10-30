@@ -1,11 +1,13 @@
 #ifndef DECLARE_H
 #define DECLARE_H
+#include <memory>
 
 #include "declarenum.h"
 
+class DeclareNum;
 class Declare {
 private:
-    DeclareNum dm;
+    std::unique_ptr<DeclareNum> dm;
 public:
     void parse();
     void print();

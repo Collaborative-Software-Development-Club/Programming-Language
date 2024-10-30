@@ -2,23 +2,27 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
 void Compare::parse() {
-    expression.parse();
+    expression = std::make_unique<Expression>();
+    expression2 = std::make_unique<Expression>();
+
+    expression->parse();
     simple t = global_parser.token_stream.value().current_token();
     if(t == LESS){
         type = 1;
     }
     global_parser.consume();
-    expression2.parse();
+    expression2->parse();
 }
 
 void Compare::print() {
-    expression.print();
+    expression->print();
     if(type == 0){
         std::cout << " = ";
     } else{
         std::cout << " < ";
     }
-    expression2.print();
+    expression2->print();
 }

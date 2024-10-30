@@ -2,12 +2,15 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
 void Condition::parse() {
+    compare = std::make_unique<Compare>();
+    cond2 = std::make_unique<Condition>();
     simple token = global_parser.token_stream.value().current_token();
     if(token == NAME){ //Compare case
         name = global_parser.token_stream.value().get_name();
-        compare.parse();
+        compare->parse();
         caseType = 1;
         token = global_parser.token_stream.value().current_token();
         
@@ -37,7 +40,7 @@ void Condition::print() {
         std::cout << "!";
         cond2->print();
     }else{
-        compare.print();
+        compare->print();
 
         if(caseType == 3){
             std::cout << " or ";

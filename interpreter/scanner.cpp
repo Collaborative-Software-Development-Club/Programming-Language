@@ -41,7 +41,7 @@ class Scanner {
                     //line now holds a line of input from the file.
 
                     //go over each character in the line.
-                    for(int i = 0; i < line.length(); i++){
+                    for(int i = 0; i < (int)(line.length()); i++){
 
                         char c = line[i];
 
@@ -71,7 +71,7 @@ class Scanner {
                                     tokenSize = 0;
                                 }
                                 //push the operand!
-                                if(i+1 <= line.length()){
+                                if(i+1 <= (int)(line.length())){
                                     if (c == '&' && line[i+1] == '&'){
                                         //AND case...
                                         q.push(string(2, line[i]));

@@ -4,11 +4,14 @@
 #include "condition.h"
 #include "statementseq.h"
 
+class StatementSeq;
+class Condition;
+
 class If {
 private:
-    Condition condition; // Pointer to hold condition
-    StatementSeq statementSeq; // Pointer to sequence of statements
-    StatementSeq statementSeq2;
+    std::unique_ptr<Condition> condition; // Pointer to hold condition
+    std::unique_ptr<StatementSeq> statementSeq; // Pointer to sequence of statements
+    std::unique_ptr<StatementSeq> statementSeq2;
     int isElseToo = 0;
 public:
     void parse();

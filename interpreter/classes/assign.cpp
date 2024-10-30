@@ -3,8 +3,11 @@
 #include "headers/globals.h"
 #include <iostream>
 #include <string>
+#include <memory>
 
 void Assign::parse() {
+    expression = std::make_unique<Expression>();
+
     global_parser.check(NAME);
     name = global_parser.get_name();
     global_parser.consume();
@@ -12,7 +15,7 @@ void Assign::parse() {
     global_parser.check(ASSIGN);
     global_parser.consume();
 
-    expression.parse();
+    expression->parse();
 
     global_parser.check(SEMICOLON);
     global_parser.consume();
@@ -20,6 +23,6 @@ void Assign::parse() {
 
 void Assign::print() {
     std::cout << name << " = ";
-    expression.print();
+    expression->print();
     std::cout << ";" << std::endl;
 }

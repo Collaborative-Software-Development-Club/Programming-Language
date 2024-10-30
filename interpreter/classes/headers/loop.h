@@ -10,6 +10,7 @@ class Condition;
 
 class Loop {
 private:
+//Make UNIQUE POINTERS
     std::unique_ptr<Condition> condition; // Pointer to hold condition
     std::unique_ptr<StatementSeq> statementSeq; // Pointer to sequence of statements
 

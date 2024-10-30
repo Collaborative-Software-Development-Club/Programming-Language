@@ -2,11 +2,13 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
-
+#include <memory>
 //<factor> ::= NAME | NUMBER | LPAREN <expression> RPAREN
 
 
 void Factor::parse() {
+    expression = std::make_unique<Expression>();
+    
     simple t = global_parser.token_stream.value().current_token();
     switch(t){
         case (NAME):

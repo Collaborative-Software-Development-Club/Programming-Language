@@ -2,9 +2,11 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
 void Expression::parse() {
-    term.parse();
+    term = std::make_unique<Term>();
+    term->parse();
     simple t = global_parser.token_stream.value().current_token();
     if(t == ADD){
         global_parser.consume();
@@ -18,7 +20,7 @@ void Expression::parse() {
 }
 
 void Expression::print() {
-    term.print();
+    term->print();
     if(type == 1){
         std::cout << " + ";
         e->print();

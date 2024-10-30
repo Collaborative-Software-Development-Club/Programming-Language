@@ -2,11 +2,12 @@
 #define ASSIGN_H
 
 #include "expression.h"
+#include <memory>
 
 class Assign {
 private:
     std::string name = "";
-    Expression expression; // Pointer to hold expression
+    std::unique_ptr<Expression> expression; // Pointer to hold expression
 
 public:
     void parse();
