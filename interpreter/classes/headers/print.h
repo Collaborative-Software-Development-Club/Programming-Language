@@ -2,10 +2,12 @@
 #define PRINT_H
 
 #include "expression.h"
+#include <memory>
 
+class Expression;
 class Print {
 private:
-    Expression expression; // Pointer to hold expression
+    std::unique_ptr<Expression> expression; // Pointer to hold expression
 
 public:
     void parse();

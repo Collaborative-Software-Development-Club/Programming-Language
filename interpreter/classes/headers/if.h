@@ -3,6 +3,7 @@
 
 #include "condition.h"
 #include "statementseq.h"
+#include <memory>
 
 class StatementSeq;
 class Condition;

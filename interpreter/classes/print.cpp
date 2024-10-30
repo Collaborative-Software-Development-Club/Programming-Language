@@ -4,12 +4,13 @@
 #include <iostream>
 
 void Print::parse() {
+    expression = std::make_unique<Expression>();
     global_parser.check(PRINT);
     global_parser.consume();
     global_parser.check(LPAREN);
     global_parser.consume();
 
-    expression.parse();
+    expression->parse();
 
     global_parser.check(RPAREN);
     global_parser.consume();
@@ -20,6 +21,6 @@ void Print::parse() {
 
 void Print::print() {
     std::cout << "print(";
-    expression.print();
+    expression->print();
     std::cout << ")" << std::endl; 
 }
