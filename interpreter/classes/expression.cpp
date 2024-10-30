@@ -4,7 +4,7 @@
 #include <iostream>
 
 void Expression::parse() {
-    term.parse();
+    //term.parse();
     if (global_parser.token_stream.value().current_token() == ADD) {
         global_parser.consume();
         exprType = 1;

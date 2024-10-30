@@ -11,12 +11,12 @@ class If;
 class Loop;
 class Statement {
 private:
-    Assign assign;
-    If* ifBlock;
-    Loop* loop;
-    Print printS;
-    Declare declare;
-    int statementType;
+    //Assign assign;
+    //If* ifBlock;
+    //Loop* loop;
+    //Print printS;
+    //Declare declare;
+    int statementType = 0;
 public:
     void parse();
     void print();

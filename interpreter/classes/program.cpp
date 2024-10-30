@@ -17,13 +17,14 @@ void Program::parse() {
     global_parser.check(LCURL);
     global_parser.consume();
 
-    ss.parse();
+    ss = std::make_unique<StatementSeq>();
+    ss->parse();
 
     global_parser.check(RCURL);
     global_parser.consume();
 }
 void Program::print() {
     cout << "program " << program_name << " { " << endl;
-    //ss.print();
+    if (ss != nullptr) ss->print();
     cout << "}" << endl;
 }

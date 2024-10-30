@@ -1,4 +1,2 @@
 program myprogram {
-    num x;
-    x = 10;
 }

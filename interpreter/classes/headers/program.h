@@ -2,11 +2,13 @@
 #define PROGRAM_H
 
 #include <string>
+#include <memory>
 #include "statementseq.h"
 
+class StatementSeq;
 class Program {
 private:
-    StatementSeq ss; // Sequence of statements
+    std::unique_ptr<StatementSeq> ss; // Sequence of statements
     std::string program_name;
 
 public:

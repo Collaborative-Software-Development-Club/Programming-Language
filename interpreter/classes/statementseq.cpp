@@ -4,15 +4,13 @@
 #include <iostream>
 
 void StatementSeq::parse() {
-    std::cout << "entered ss" << std::endl;
+    s = std::make_unique<Statement>();
     s->parse();
-    //simple candidate = global_parser.token_stream.value().current_token();
-    //if (candidate ==  NAME || candidate == IF || candidate == WHILE || candidate == PRINT || candidate == NUM) {
-    //    ss->parse();
-    //}
+    tester = 2;
 }
 
 void StatementSeq::print() {
     s->print();
-    if (ss != nullptr) ss->print();
+    //if (ss != nullptr) ss->print();
+    std::cout << tester << std::endl;
 }

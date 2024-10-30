@@ -2,12 +2,14 @@
 #define STATEMENTSEQ_H
 
 #include "statement.h"
+#include <memory>
 
 class Statement;
 class StatementSeq {
 private:
-    StatementSeq* ss;
-    Statement* s; // Pointer to individual statement object
+   std::unique_ptr<StatementSeq> ss;
+    std::unique_ptr<Statement> s; // Pointer to individual statement object
+    int tester;
 public:
     void parse();
     void print();
