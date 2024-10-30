@@ -3,11 +3,15 @@
 
 #include "condition.h"
 #include "statementseq.h"
+#include <memory>   //used to allow for pointers...
+
+class StatementSeq; //DEFINE CLASSES BEFOREHAND TO AVOID CIRCULAR DEPENDENCIES...
+class Condition; 
 
 class Loop {
 private:
-    Condition condition; // Pointer to hold condition
-    StatementSeq statementSeq; // Pointer to sequence of statements
+    std::unique_ptr<Condition> condition; // Pointer to hold condition
+    std::unique_ptr<StatementSeq> statementSeq; // Pointer to sequence of statements
 
 public:
     void parse();
