@@ -18,11 +18,13 @@ void Condition::parse() {
         if (global_parser.token_stream.value().current_token() == OR) {
             global_parser.consume();
             cndType = 2;
+            cnd = std::make_unique<Condition>();
             cnd->parse();
         }
         else if (global_parser.token_stream.value().current_token() == AND) {
             global_parser.consume();
             cndType = 3;
+            cnd = std::make_unique<Condition>();
             cnd->parse();
         }
     }
@@ -34,17 +36,17 @@ void Condition::print() {
         cpr->print();
         break;
         case 1:
-        std::cout << " not ";
+        std::cout << " ! ";
         cnd->print();
         break;
         case 2:
         cpr->print();
-        std::cout << " or ";
+        std::cout << " | ";
         cnd->print();
         break;
         case 3:
         cpr->print();
-        std::cout << " and ";
+        std::cout << " & ";
         cnd->print();
         break;
         default:

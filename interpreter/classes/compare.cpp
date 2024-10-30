@@ -8,11 +8,12 @@ void Compare::parse() {
     expr1 = std::make_unique<Expression>();
     expr1->parse();
     if (global_parser.token_stream.value().current_token() == EQUAL) {
-        equal = false;
+        equal = true;
+        global_parser.check(EQUAL);
         global_parser.consume();
     }
     else {
-        equal = true;
+        equal = false;
         global_parser.check(LESS);
         global_parser.consume();
     }
