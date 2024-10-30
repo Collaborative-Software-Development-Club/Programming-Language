@@ -5,11 +5,12 @@
 #include "statementseq.h"
 
 class StatementSeq;
+class Condition;
 class If {
 private:
-    Condition condition; // Pointer to hold condition
-    StatementSeq* statementSeq; // Pointer to sequence of statements
-    StatementSeq* statementSeq2;
+    std::unique_ptr<Condition> cnd;
+    std::unique_ptr<StatementSeq> ss1;
+    std::unique_ptr<StatementSeq> ss2;
     bool hasElse = false;
 
 public:

@@ -2,16 +2,19 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
 void Condition::parse() {
     if (global_parser.token_stream.value().current_token() == NOT) {
         global_parser.check(NOT);
         global_parser.consume();
         cndType = 1;
+        cnd = std::make_unique<Condition>();
         cnd->parse();
     }
     else {
-        compare.parse();
+        cpr = std::make_unique<Compare>();
+        cpr->parse();
         if (global_parser.token_stream.value().current_token() == OR) {
             global_parser.consume();
             cndType = 2;
@@ -28,19 +31,19 @@ void Condition::parse() {
 void Condition::print() {
     switch (cndType) {
         case 0:
-        compare.print();
+        cpr->print();
         break;
         case 1:
         std::cout << " not ";
         cnd->print();
         break;
         case 2:
-        compare.print();
+        cpr->print();
         std::cout << " or ";
         cnd->print();
         break;
         case 3:
-        compare.print();
+        cpr->print();
         std::cout << " and ";
         cnd->print();
         break;

@@ -2,9 +2,11 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
 void Compare::parse() {
-    expression.parse();
+    expr1 = std::make_unique<Expression>();
+    expr1->parse();
     if (global_parser.token_stream.value().current_token() == EQUAL) {
         equal = false;
         global_parser.consume();
@@ -14,16 +16,17 @@ void Compare::parse() {
         global_parser.check(LESS);
         global_parser.consume();
     }
-    expression2.parse();
+    expr2 = std::make_unique<Expression>();
+    expr2->parse();
 }
 
 void Compare::print() {
-    expression.print();
+    expr1->print();
     if (equal) {
         std::cout << " == ";
     }
     else {
         std::cout << " < ";
     }
-    expression2.print();
+    expr2->print();
 }

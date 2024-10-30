@@ -6,11 +6,14 @@
 void StatementSeq::parse() {
     s = std::make_unique<Statement>();
     s->parse();
-    tester = 2;
+    int curr = global_parser.token_stream.value().current_token();
+    if (curr == NAME || curr == IF || curr == WHILE || curr == PRINT || curr == NUM) {
+        ss = std::make_unique<StatementSeq>();
+        ss->parse();
+    }
 }
 
 void StatementSeq::print() {
     s->print();
-    //if (ss != nullptr) ss->print();
-    std::cout << tester << std::endl;
+    if (ss != nullptr) ss->print();
 }

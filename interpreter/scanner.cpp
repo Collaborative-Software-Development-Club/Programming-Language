@@ -94,6 +94,9 @@ using namespace std;
         else if (s.compare("num") == 0) {
             curr_token = NUM;
         }
+        else if (s.compare("print") == 0) {
+            curr_token = PRINT;
+        }
         else found = false;
         return found;
     }

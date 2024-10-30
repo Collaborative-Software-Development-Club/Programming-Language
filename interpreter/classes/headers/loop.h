@@ -3,13 +3,14 @@
 
 #include "condition.h"
 #include "statementseq.h"
+#include <memory>
 
 class StatementSeq;
+class Condition;
 class Loop {
 private:
-    Condition condition; // Pointer to hold condition
-    StatementSeq* statementSeq; // Pointer to sequence of statements
-
+    std::unique_ptr<Condition> cnd;
+    std::unique_ptr<StatementSeq> ss;
 public:
     void parse();
     void print();

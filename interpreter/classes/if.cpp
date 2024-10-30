@@ -2,14 +2,17 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
 void If::parse() {
     global_parser.check(IF);
     global_parser.consume();
-    condition.parse();
+    cnd = std::make_unique<Condition>();
+    cnd->parse();
     global_parser.check(LCURL);
     global_parser.consume();
-    statementSeq->parse();
+    ss1 = std::make_unique<StatementSeq>();
+    ss1->parse();
     global_parser.check(RCURL);
     global_parser.consume();
     if (global_parser.token_stream.value().current_token() == ELSE) {
@@ -18,7 +21,8 @@ void If::parse() {
         global_parser.consume();
         global_parser.check(LCURL);
         global_parser.consume();
-        statementSeq2->parse();
+        ss2 = std::make_unique<StatementSeq>();
+        ss2->parse();
         global_parser.check(RCURL);
         global_parser.consume();
     }
@@ -26,14 +30,14 @@ void If::parse() {
 
 void If::print() {
     std::cout << "if ";
-    condition.print();
+    cnd->print();
     std::cout << " {" << std::endl;
-    statementSeq->print();
+    ss1->print();
     std::cout << "}" << std::endl;
     if (hasElse) {
         std::cout << "else ";
         std::cout << " {" << std::endl;
-        statementSeq2->print();
+        ss2->print();
         std::cout << "}" << std::endl;
     }
 }

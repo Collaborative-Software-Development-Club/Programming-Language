@@ -2,11 +2,12 @@
 #define COMPARE_H
 
 #include "expression.h"
+#include <memory>
 
 class Compare {
 private:
-    Expression expression; // Pointer to hold expression
-    Expression expression2;
+    std::unique_ptr<Expression> expr1;
+    std::unique_ptr<Expression> expr2;
     bool equal = false;
 public:
     void parse();

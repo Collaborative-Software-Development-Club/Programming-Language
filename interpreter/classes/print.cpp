@@ -3,13 +3,15 @@
 #include "headers/globals.h"
 #include <iostream>
 #include <string>
+#include <memory>
 
 void Print::parse() {
     global_parser.check(PRINT);
     global_parser.consume();
     global_parser.check(LPAREN);
     global_parser.consume();
-    expression.parse();
+    expr = std::make_unique<Expression>();
+    expr->parse();
     global_parser.check(RPAREN);
     global_parser.consume();
     global_parser.check(SEMICOLON);
@@ -18,6 +20,6 @@ void Print::parse() {
 
 void Print::print() {
     std::cout << "print(";
-    expression.print();
+    expr->print();
     std::cout << ");" << std::endl;
 }

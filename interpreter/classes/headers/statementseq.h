@@ -7,9 +7,8 @@
 class Statement;
 class StatementSeq {
 private:
-   std::unique_ptr<StatementSeq> ss;
-    std::unique_ptr<Statement> s; // Pointer to individual statement object
-    int tester;
+    std::unique_ptr<StatementSeq> ss;
+    std::unique_ptr<Statement> s;
 public:
     void parse();
     void print();

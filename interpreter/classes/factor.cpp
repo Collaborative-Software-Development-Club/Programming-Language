@@ -2,6 +2,7 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
 void Factor::parse() {
     if (global_parser.token_stream.value().current_token() == NAME) {
@@ -18,7 +19,8 @@ void Factor::parse() {
         factorType = 2;
         global_parser.check(LPAREN);
         global_parser.consume();
-        expression->parse();
+        expr = std::make_unique<Expression>();
+        expr->parse();
         global_parser.check(RPAREN);
         global_parser.consume();
     }
@@ -33,7 +35,7 @@ void Factor::print() {
     }
     else {
         std::cout << "(";
-        expression->print();
+        expr->print();
         std::cout << ")";
     }
 }

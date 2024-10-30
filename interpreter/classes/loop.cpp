@@ -2,22 +2,25 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
 void Loop::parse() {
     global_parser.check(WHILE);
     global_parser.consume();
-    condition.parse();
+    cnd = std::make_unique<Condition>();
+    cnd->parse();
     global_parser.check(LCURL);
     global_parser.consume();
-    statementSeq->parse();
+    ss = std::make_unique<StatementSeq>();
+    ss->parse();
     global_parser.check(RCURL);
     global_parser.consume();
 }
 
 void Loop::print() {
     std::cout << "while ";
-    condition.print();
+    cnd->print();
     std::cout << " {" << std::endl;
-    statementSeq->print(); 
+    ss->print(); 
     std::cout << "}" << std::endl;
 }

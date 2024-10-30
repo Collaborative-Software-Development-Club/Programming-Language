@@ -2,32 +2,33 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
 void Term::parse() {
-    factor.parse();
+    fcr = std::make_unique<Factor>();
+    fcr->parse();
     if (global_parser.token_stream.value().current_token() == MULTIPLY) {
         global_parser.consume();
         termType = 1;
-        t->parse();
+        trm = std::make_unique<Term>();
+        trm->parse();
     }
     else if (global_parser.token_stream.value().current_token() == DIVIDE) {
         global_parser.consume();
         termType = 2;
-        t->parse();
-    }
-    else {
-        termType = 0;
+        trm = std::make_unique<Term>();
+        trm->parse();
     }
 }
 
 void Term::print() {
-    factor.print();
+    fcr->print();
     if (termType == 1) {
         std::cout << " * ";
-        t->print();
+        trm->print();
     }
     else if (termType == 2) {
         std::cout << " / ";
-        t->print();
+        trm->print();
     }
 } 

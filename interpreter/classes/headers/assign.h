@@ -3,10 +3,12 @@
 
 #include "expression.h"
 #include <string>
+#include <memory>
 
+class Expression;
 class Assign {
 private:
-    Expression expression; // Pointer to hold expression
+    std::unique_ptr<Expression> expr;
     std::string name = "";
 public:
     void parse();
