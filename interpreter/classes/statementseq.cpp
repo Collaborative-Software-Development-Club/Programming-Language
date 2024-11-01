@@ -2,9 +2,12 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
 void StatementSeq::parse() {
-    statement.parse(); //know there must be a statement.
+    statement = std::make_unique<Statement>();
+    ss2 = std::make_unique<StatementSeq>();
+    statement->parse(); //know there must be a statement.
     
     //check if the next token is a statement-sequence or not...
     simple currentToken = global_parser.token_stream.value().current_token();
@@ -16,5 +19,5 @@ void StatementSeq::parse() {
 }
 
 void StatementSeq::print() {
-    statement.print();
+    statement->print();
 }
