@@ -1,6 +1,7 @@
 #include "headers/program.h"
 #include "../simple.cpp"
 #include "headers/globals.h"
+#include "globals.cpp"
 #include <iostream>
 
 using namespace std;

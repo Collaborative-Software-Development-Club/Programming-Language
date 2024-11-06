@@ -121,7 +121,7 @@ class Scanner {
             char token_c;
             while (curr_token != EOS) {
                 token_c = charStream[charPointer];
-                if (charPointer != charStream.size() && token_c != ' ' && token_c != '\n' && token_c != '\0' && token_c != '\t') { // checking for any potential whitespace
+                if ((long long unsigned int)charPointer != charStream.size() && token_c != ' ' && token_c != '\n' && token_c != '\0' && token_c != '\t') { // checking for any potential whitespace
                     token_string += token_c; // if not whitespace, append to string
                     if (!isdigit(charStream[charPointer + 1]) && !isalpha(charStream[charPointer + 1]) && checkKeyword(token_string)) {
                         // if the current word looks like a keyword and has nothing leading it, it's a keyword
@@ -159,7 +159,7 @@ class Scanner {
                         }
                     }
                 }
-                else if (charPointer >= charStream.size() - 1) { // get eos token here
+                else if ((long long unsigned int)charPointer >= charStream.size() - 1) { // get eos token here
                     curr_token = EOS;
                 }
                 charPointer++;
