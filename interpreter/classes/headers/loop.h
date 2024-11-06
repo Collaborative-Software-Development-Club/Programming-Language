@@ -14,6 +14,7 @@ private:
 public:
     void parse();
     void print();
+    void execute();
 };
 
 #endif // LOOP_H

@@ -13,6 +13,7 @@ private:
 public:
     void parse();
     void print();
+    int execute();
 };
 
 #endif // TERM_H

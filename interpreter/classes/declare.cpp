@@ -12,3 +12,7 @@ void Declare::parse() {
 void Declare::print() {
     dn->print();
 }
+
+void Declare::execute() {
+    dn->execute();
+}

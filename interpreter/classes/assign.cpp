@@ -21,3 +21,7 @@ void Assign::print() {
     expr->print();
     std::cout << ";" << std::endl;
 }
+
+void Assign::execute() {
+    global_memory.set_num(name, expr->execute());
+}

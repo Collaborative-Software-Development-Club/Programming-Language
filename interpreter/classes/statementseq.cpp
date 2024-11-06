@@ -17,3 +17,8 @@ void StatementSeq::print() {
     s->print();
     if (ss != nullptr) ss->print();
 }
+
+void StatementSeq::execute() {
+    s->execute();
+    if (ss != nullptr) ss->execute();
+}

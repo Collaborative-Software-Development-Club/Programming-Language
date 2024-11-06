@@ -12,6 +12,7 @@ private:
 public:
     void parse();
     void print();
+    void execute();
 };
 
 #endif // STATEMENTSEQ_H

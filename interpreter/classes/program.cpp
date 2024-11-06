@@ -28,3 +28,8 @@ void Program::print() {
     if (ss != nullptr) ss->print();
     cout << "}" << endl;
 }
+void Program::execute() {
+    global_memory.make_scope();
+    ss->execute();
+    global_memory.demake_scope();
+}

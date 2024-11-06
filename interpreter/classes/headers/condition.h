@@ -13,6 +13,7 @@ private:
 public:
     void parse();
     void print();
+    bool execute();
 };
 
 #endif // CONDITION_H

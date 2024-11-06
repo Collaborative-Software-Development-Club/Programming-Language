@@ -1,8 +1,8 @@
-program myprogram {
-    if (1 + 3) == 4 {
-        while x < 5 {
-            x = x + 1;
-            print(x);
-        }
+program quinton {
+    num x;
+    x = 1 + 9;
+    while x < 18 {
+        x = x + 1;
+        print(x);
     }
 }

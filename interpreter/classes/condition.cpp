@@ -53,3 +53,22 @@ void Condition::print() {
         break;
     }
 }
+
+bool Condition::execute() {
+    switch (cndType) {
+        case 0:
+        return cpr->execute();
+        break;
+        case 1:
+        return !cpr->execute();
+        break;
+        case 2:
+        return cpr->execute() || cnd->execute();
+        break;
+        case 3:
+        return cpr->execute() && cnd->execute();
+        break;
+        default:
+        break;
+    }
+}

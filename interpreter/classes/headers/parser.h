@@ -19,6 +19,8 @@ public:
     // print the parsed program
     void print_all();
 
+    void execute_all();
+
     // check for grammatical error
     void check(simple check);
 

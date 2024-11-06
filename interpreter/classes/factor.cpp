@@ -39,3 +39,15 @@ void Factor::print() {
         std::cout << ")";
     }
 }
+
+int Factor::execute() {
+    if (factorType == 0) {
+        return global_memory.get_num(name);
+    }
+    else if (factorType == 1) {
+        return num;
+    }
+    else {
+        return expr->execute();
+    }
+}

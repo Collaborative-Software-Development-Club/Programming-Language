@@ -24,6 +24,7 @@ private:
 public:
     void parse();
     void print();
+    void execute();
 };
 
 #endif // STATEMENT_H

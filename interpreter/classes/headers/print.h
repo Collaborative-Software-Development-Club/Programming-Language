@@ -11,6 +11,7 @@ private:
 public:
     void parse();
     void print();
+    void execute();
 };
 
 #endif // PRINT_H

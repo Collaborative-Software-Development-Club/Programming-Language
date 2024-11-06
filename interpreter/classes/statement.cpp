@@ -58,3 +58,25 @@ void Statement::print() {
         break;
     }
 }
+
+void Statement::execute() {
+    switch(statementType) {
+        case 0:
+        asn->execute();
+        break;
+        case 1:
+        ifst->execute();
+        break;
+        case 2:
+        lp->execute();
+        break;
+        case 3:
+        prnt->execute();
+        break;
+        case 4:
+        decl->execute();
+        break;
+        default:
+        break;
+    }
+}

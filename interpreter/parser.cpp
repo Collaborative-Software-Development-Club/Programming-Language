@@ -20,6 +20,10 @@ void Parser::print_all() {
     p.print(); // Print the program
 }
 
+void Parser::execute_all() {
+    p.execute();
+}
+
 void Parser::check(simple check) {
     if (token_stream && token_stream.value().current_token() != check) {
         cerr << "ERROR: Expected " << check << ", " << " got " << token_stream.value().current_token() << endl;

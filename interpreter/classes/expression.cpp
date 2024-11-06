@@ -32,3 +32,15 @@ void Expression::print() {
         expr->print();
     }
 }
+
+int Expression::execute() {
+    if (exprType == 0) {
+        return trm->execute();
+    }
+    else if (exprType == 1) {
+        return trm->execute() + expr->execute();
+    }
+    else {
+        return trm->execute() - expr->execute();
+    }
+}
