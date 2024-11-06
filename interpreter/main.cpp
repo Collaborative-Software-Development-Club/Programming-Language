@@ -3,7 +3,7 @@
 #include "scanner.cpp"
 #include "simple.cpp"
 #include "parser.cpp"
-
+#include "classes/headers/globals.h"
 using namespace std;
 
 // Helper function to convert token to string
@@ -54,9 +54,10 @@ int main(int argc, char* argv[]) {
             s.next_token();
         }
         
-        Parser::initialize_parser(str);
-        Parser::parse_all();
-        Parser::print_all();
+
+        global_parser.initialize_parser(str);
+        global_parser.parse_all();
+        global_parser.print_all();
 
 
 

@@ -3,8 +3,7 @@
 #include "headers/globals.h"
 #include <iostream>
 
-void DeclareNum::parse(){
-
+void DeclareNum::parse() {
     global_parser.check(NUM);
     global_parser.consume();
     global_parser.check(NAME);
@@ -14,6 +13,6 @@ void DeclareNum::parse(){
     global_parser.consume();
 }
 
-void DeclareNum::print(){
-    std::cout << "tally " << name << "." << std::endl;
+void DeclareNum::print() {
+    std::cout << "num " << name << ";" << std::endl;
 }

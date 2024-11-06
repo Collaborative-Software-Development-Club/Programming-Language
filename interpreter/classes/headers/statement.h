@@ -6,19 +6,25 @@
 #include "loop.h"
 #include "print.h"
 #include "declare.h"
+#include <memory>
 
+class Assign;
+class If;
+class Loop;
+class Print;
+class Declare;
 class Statement {
-    Assign assign;
-    If ifBlock;
-    Loop loop;
-    Print print1;
-    Declare declare;
-    int type; 
-
-
+private:
+    std::unique_ptr<Assign> asn;
+    std::unique_ptr<If> ifst;
+    std::unique_ptr<Loop> lp;
+    std::unique_ptr<Print> prnt;
+    std::unique_ptr<Declare> decl;
+    int statementType = -1;
 public:
     void parse();
     void print();
+    void execute();
 };
-    
+
 #endif // STATEMENT_H

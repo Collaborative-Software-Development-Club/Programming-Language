@@ -2,44 +2,54 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
-void Condition::parse(){
-    type = 1;
-    if(global_parser.token_stream.value().current_token() == NOT){
+void Condition::parse() {
+    if (global_parser.token_stream.value().current_token() == NOT) {
+        global_parser.check(NOT);
         global_parser.consume();
-        type = 2; 
-        cnd_ptr->parse();        
-    }else{
-        compare.parse();
-        if(global_parser.token_stream.value().current_token() == OR){
+        cndType = 1;
+        cnd = std::make_unique<Condition>();
+        cnd->parse();
+    }
+    else {
+        cpr = std::make_unique<Compare>();
+        cpr->parse();
+        if (global_parser.token_stream.value().current_token() == OR) {
             global_parser.consume();
-            type = 3;
-            cnd_ptr->parse();
-        }else if(global_parser.token_stream.value().current_token() == AND){
+            cndType = 2;
+            cnd = std::make_unique<Condition>();
+            cnd->parse();
+        }
+        else if (global_parser.token_stream.value().current_token() == AND) {
             global_parser.consume();
-            type = 4; 
-            cnd_ptr->parse();
-        }   
+            cndType = 3;
+            cnd = std::make_unique<Condition>();
+            cnd->parse();
+        }
     }
 }
 
-void Condition::print(){
-    switch(type){
-        case 1: 
-            compare.print();
-            break;
-        case 2: 
-            std::cout << " nay "<< std::endl;
-            cnd_ptr->print();
-            break;
-        case 3: 
-           compare.print();
-           std::cout << " disjunction "<< std::endl;
-           cnd_ptr->print();
-        case 4: 
-           compare.print();
-           std::cout << " moreover "<< std::endl;
-           cnd_ptr->print();     
-
+void Condition::print() {
+    switch (cndType) {
+        case 0:
+        cpr->print();
+        break;
+        case 1:
+        std::cout << " ! ";
+        cnd->print();
+        break;
+        case 2:
+        cpr->print();
+        std::cout << " | ";
+        cnd->print();
+        break;
+        case 3:
+        cpr->print();
+        std::cout << " & ";
+        cnd->print();
+        break;
+        default:
+        break;
     }
 }

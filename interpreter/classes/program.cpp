@@ -5,26 +5,26 @@
 
 using namespace std;
 
-void Program::parse(){
+void Program::parse() {
     global_parser.consume();
     global_parser.check(PROGRAM);
     global_parser.consume();
 
     global_parser.check(NAME);
-    programName = global_parser.get_name();
+    program_name = global_parser.get_name();
     global_parser.consume();
 
     global_parser.check(LCURL);
     global_parser.consume();
 
-    statementSeq.parse();
+    ss = std::make_unique<StatementSeq>();
+    ss->parse();
 
     global_parser.check(RCURL);
     global_parser.consume();
 }
-
-void Program::print(){
-    cout << "program " << programName << " {" << endl;
-    statementSeq.print();
+void Program::print() {
+    cout << "program " << program_name << " { " << endl;
+    if (ss != nullptr) ss->print();
     cout << "}" << endl;
 }

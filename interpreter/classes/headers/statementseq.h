@@ -2,16 +2,17 @@
 #define STATEMENTSEQ_H
 
 #include "statement.h"
+#include <memory>
 
+class Statement;
 class StatementSeq {
 private:
-    Statement statement; // Pointer to individual statement object
-    StatementSeq * ss;
-    bool recursive; 
-
+    std::unique_ptr<StatementSeq> ss;
+    std::unique_ptr<Statement> s;
 public:
     void parse();
     void print();
+    void execute();
 };
 
 #endif // STATEMENTSEQ_H

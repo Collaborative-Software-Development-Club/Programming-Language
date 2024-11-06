@@ -2,18 +2,19 @@
 #define FACTOR_H
 
 #include <string>
+#include <memory>
 
-class Expression; // Forward declaration
-
+class Expression;
 class Factor {
 private:
-    std::string name; // Variable name (if applicable)
-    double value;     // Numeric value (if applicable)
-    Expression* expression; // Pointer to hold expression in parentheses
-    int type; 
+    std::unique_ptr<Expression> expr;
+    std::string name = "";
+    int num = -1;
+    int factorType = -1;
 public:
     void parse();
     void print();
+    int execute();
 };
 
 #endif // FACTOR_H

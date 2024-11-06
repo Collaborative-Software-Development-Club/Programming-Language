@@ -2,34 +2,33 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
-void Expression::parse(){
-
-    term.parse();
-    t = 0;
-
-    if(global_parser.token_stream.value().current_token() ==AND){
-        t = 1; 
+void Expression::parse() {
+    trm = std::make_unique<Term>();
+    trm->parse();
+    if (global_parser.token_stream.value().current_token() == ADD) {
         global_parser.consume();
-    }else if(global_parser.token_stream.value().current_token() == SUBTRACT ){
-        t=2;
-        global_parser.consume();
+        exprType = 1;
+        expr = std::make_unique<Expression>();
+        expr->parse();
     }
-
-    ex_ptr->parse();
+    else if (global_parser.token_stream.value().current_token() == SUBTRACT) {
+        global_parser.consume();
+        exprType = 2;
+        expr = std::make_unique<Expression>();
+        expr->parse();
+    }
 }
 
-void Expression::print(){
-    term.print();
-
-    switch(t){
-        case 1: 
-           std::cout << " replenish "<< std::endl;
-           ex_ptr->print();
-           break; 
-        case 2: 
-            std::cout << " diminish "<< std::endl;
-            ex_ptr->print();
-            break;
+void Expression::print() {
+    trm->print();
+    if (exprType == 1) {
+        std::cout << " + ";
+        expr->print();
+    }
+    else if (exprType == 2) {
+        std::cout << " - ";
+        expr->print();
     }
 }

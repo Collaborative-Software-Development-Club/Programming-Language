@@ -2,48 +2,42 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
-void If::parse(){
-    type = 0; 
+void If::parse() {
     global_parser.check(IF);
     global_parser.consume();
-    condition.parse();
-
+    cnd = std::make_unique<Condition>();
+    cnd->parse();
     global_parser.check(LCURL);
     global_parser.consume();
-
-    statementSeq.parse();
-
-    global_parser.check(LCURL);
+    ss1 = std::make_unique<StatementSeq>();
+    ss1->parse();
+    global_parser.check(RCURL);
     global_parser.consume();
-    
-    if(global_parser.token_stream.value().current_token() == ELSE){
-        type = 1; 
-        global_parser.consume(); 
-
+    if (global_parser.token_stream.value().current_token() == ELSE) {
+        hasElse = true;
+        global_parser.check(ELSE);
+        global_parser.consume();
         global_parser.check(LCURL);
         global_parser.consume();
-
-        statementSeq2.parse();
-
-        global_parser.check(LCURL);
+        ss2 = std::make_unique<StatementSeq>();
+        ss2->parse();
+        global_parser.check(RCURL);
         global_parser.consume();
     }
-
 }
 
-void If::print(){
-    std::cout << " presuming "<< std::endl;
-    condition.print();
-    std::cout << " { "<< std::endl;
-    statementSeq.print();
-     std::cout << " } "<< std::endl;
-
-    if(type > 0){
-        std::cout << " lest "<< std::endl;
-        std::cout << " { "<< std::endl;
-        statementSeq2.print();
-        std::cout << " } "<< std::endl;
+void If::print() {
+    std::cout << "if ";
+    cnd->print();
+    std::cout << " {" << std::endl;
+    ss1->print();
+    std::cout << "}" << std::endl;
+    if (hasElse) {
+        std::cout << "else ";
+        std::cout << " {" << std::endl;
+        ss2->print();
+        std::cout << "}" << std::endl;
     }
-
 }

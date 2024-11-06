@@ -2,15 +2,18 @@
 #define EXPRESSION_H
 
 #include "term.h"
+#include <memory>
 
+class Term;
 class Expression {
 private:
-    Term term; // Pointer to hold term
-    Expression * ex_ptr;
-    int t;
+    std::unique_ptr<Term> trm;
+    std::unique_ptr<Expression> expr;
+    int exprType = 0;
 public:
     void parse();
     void print();
+    int execute();
 };
 
 #endif // EXPRESSION_H

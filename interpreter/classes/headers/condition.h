@@ -2,15 +2,18 @@
 #define CONDITION_H
 
 #include "compare.h"
+#include <memory>
 
+class Compare;
 class Condition {
 private:
-    Compare compare; // Pointer to hold comparison
-    int type;
-    Condition * cnd_ptr; 
+    std::unique_ptr<Compare> cpr;
+    std::unique_ptr<Condition> cnd;
+    int cndType = 0;
 public:
     void parse();
     void print();
+    bool execute();
 };
 
 #endif // CONDITION_H

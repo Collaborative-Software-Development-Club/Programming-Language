@@ -3,19 +3,17 @@
 #include "headers/globals.h"
 #include <iostream>
 
-void StatementSeq::parse() { 
-    statement.parse(); 
-    recursive = false; 
-    simple iden = global_parser.token_stream.value().current_token();
-    if(iden == NAME ||iden == IF || iden == WHILE || iden == PRINT) {
+void StatementSeq::parse() {
+    s = std::make_unique<Statement>();
+    s->parse();
+    int curr = global_parser.token_stream.value().current_token();
+    if (curr == NAME || curr == IF || curr == WHILE || curr == PRINT || curr == NUM) {
+        ss = std::make_unique<StatementSeq>();
         ss->parse();
-        recursive = true; 
     }
 }
 
-void StatementSeq::print(){
-    statement.print();
-    if(recursive){
-        ss->print();
-    }
+void StatementSeq::print() {
+    s->print();
+    if (ss != nullptr) ss->print();
 }

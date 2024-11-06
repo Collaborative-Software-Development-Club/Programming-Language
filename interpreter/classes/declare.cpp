@@ -2,11 +2,13 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
 void Declare::parse() {
-    dn.parse();
+    dn = std::make_unique<DeclareNum>();
+    dn->parse();
 }
 
 void Declare::print() {
-    dn.print();
+    dn->print();
 }

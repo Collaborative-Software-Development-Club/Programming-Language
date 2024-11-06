@@ -2,15 +2,17 @@
 #define COMPARE_H
 
 #include "expression.h"
+#include <memory>
 
 class Compare {
 private:
-    Expression expression; // Pointer to hold expression
-    Expression expression2;
-    bool isLess = false; 
+    std::unique_ptr<Expression> expr1;
+    std::unique_ptr<Expression> expr2;
+    bool equal = false;
 public:
     void parse();
     void print();
+    bool execute();
 };
 
 #endif // COMPARE_H
