@@ -5,7 +5,7 @@
 #include <memory>
 
 void DeclareNum::parse() {
-    simple currentToken = global_parser.token_stream.value().current_token();
+    //simple currentToken = global_parser.token_stream.value().current_token();
     global_parser.check(NUM);
     global_parser.consume();
     

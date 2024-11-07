@@ -4,6 +4,10 @@
 #include <string>
 #include "../../simple.cpp" // Assuming you have this file for simple tokens
 #include <vector>
+#include <queue>
+#include <fstream>
+#include <iostream>
+
 
 class Scanner {
     private:
@@ -12,24 +16,18 @@ class Scanner {
         simple curr_token; // the current token
         int curr_number; // the int value of the most recent (or current) 'NUMBER' token
         std::string curr_name; // the string value of the most recent (or current) 'NAME' token
-
-        //bool is_number(std::string s);
-        //bool is_letter(std::string s);
-        //bool is_symbol(std::string s);
-        //void symbol_check(std::string s);
-        //bool keyword_check(std::string s);
+        std::queue<std::string> q;
 
     public:
         // Constructor to initialize the Scanner with a file
         Scanner(std::string f);
-
+        int is_num(std::string t);
         // Returns the current token without advancing to the next one
         simple current_token();
 
         // Advances to the next token in the stream
         void next_token();
 
-        int is_num(std::string t);
 
         // Returns the name if the current token is 'NAME', otherwise throws an error
         std::string get_name();
