@@ -1,8 +1,5 @@
 program quinton {
     num x;
-    x = 1 + 9;
-    while x < 18 {
-        x = x + 1;
-        print(x);
-    }
+    x = 5;
+    print(x);
 }

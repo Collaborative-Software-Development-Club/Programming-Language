@@ -41,11 +41,16 @@ void Memory::set_num(std::string n, int val) {
 int Memory::get_num(std::string n) {
     int val = 0;
     bool found = false;
+    std::cout << mem.size() << std::endl;
     if (Memory::mem.size() > 0) {
         std::stack<std::map<std::string, int>> temp;
         while (!mem.empty()) {
             auto curr = mem.top();
             mem.pop();
+            for (const auto& pair : curr) {
+                std::cout << "Key: " << pair.first << ", Value: " << pair.second << std::endl;
+            }
+
             if (curr.find(n) != curr.end()) {
                 val = curr[n];
                 found = true;
