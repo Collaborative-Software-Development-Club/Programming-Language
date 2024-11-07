@@ -8,7 +8,7 @@
 using namespace std;
 
 // Define the global Parser object
-// Parser global_parser;
+Parser global_parser;
 
 void Parser::initialize_parser(std::string f) {
     token_stream = Scanner(f);

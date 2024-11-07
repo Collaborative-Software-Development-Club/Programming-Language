@@ -1,14 +1,17 @@
 #include "headers/program.h"
 #include "../simple.cpp"
 #include "headers/globals.h"
-#include "globals.cpp"
+//#include "globals.cpp"
 #include <iostream>
 
 using namespace std;
 
 void Program::parse() {
+
     global_parser.consume();
+    
     global_parser.check(PROGRAM);
+
     global_parser.consume();
 
     global_parser.check(NAME);
@@ -25,7 +28,7 @@ void Program::parse() {
     global_parser.consume();
 }
 void Program::print() {
-    cout << "program " << program_name << " { " << endl;
+        cout << "program " << program_name << " { " << endl;
     if (ss != nullptr) ss->print();
     cout << "}" << endl;
 }

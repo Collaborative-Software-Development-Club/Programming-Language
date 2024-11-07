@@ -1,4 +1,4 @@
-memoranda TestProgram {
+memorandum TestProgram {
     tally x.
     tally y.
     tally result.
@@ -6,10 +6,10 @@ memoranda TestProgram {
     x designate 10.
     y designate 20.
 
-    presuming (nay (x commensurate y)) {
-        etch(x replenish y)
+    presuming nay (x commensurate y) {
+        etch(x replenish y).
     } lest {
-        etch(x diminish y)
+        etch(x diminish y).
     }
 
     midst ((x beneath y) disjunction (x commensurate 10)) {

@@ -3,14 +3,15 @@
 #include <fstream>
 #include "simple.cpp"
 #include <vector>
+#include "classes/headers/scanner.h"
 
 using namespace std;
-
+/*
 #ifndef SCANNER_H
 #define SCANNER_H
-
-class Scanner {
-    private:
+*/
+//class Scanner::Scanner {
+  //  private:
 
         // you may either keep an array or a list of all characters in the stream, or...
         // ...keep the file stream open, and read only characters that you need at the moment!
@@ -22,7 +23,7 @@ class Scanner {
         int curr_number; // the int value of the most recent (or current) 'NUMBER' token
         string curr_name; // the string value of the most recent (or current) 'NAME' token
 
-        bool isNumber(string str) {
+        bool Scanner::isNumber(string str) {
             bool isNumber = true;
             for (char c : str) {
                 if (!isdigit(c)) {
@@ -32,7 +33,7 @@ class Scanner {
             return isNumber;
         }
 
-        bool isLetter(string str) {
+        bool Scanner::isLetter(string str) {
             bool isLetter = true;
             for (char c : str) {
                 if (!isalpha(c)) {
@@ -42,11 +43,11 @@ class Scanner {
             return isLetter;
         }
 
-        bool isSymbol(string str) {
+        bool Scanner::isSymbol(string str) {
             return (!isNumber(str) && !isLetter(str));
         }
 
-        bool checkSyntax(string s){
+        bool Scanner::checkSyntax(string s){
             if(s.compare("designation") == 0){ curr_token = NAME; }
             else if(s.compare(".") == 0){ curr_token = SEMICOLON;}
             else if(s.compare("(") == 0){ curr_token = LPAREN;}
@@ -61,9 +62,9 @@ class Scanner {
             return false;
         }   
 
-        bool checkKeyword(string s){
+        bool Scanner::checkKeyword(string s){
             bool found = true;
-            if (s.compare("memoranda") == 0) { curr_token = PROGRAM;}
+            if (s.compare("memorandum") == 0) { curr_token = PROGRAM;}
             else if (s.compare("etch") == 0) { curr_token = PRINT; }
             else if(s.compare("designate") == 0) { curr_token = ASSIGN;}
             else if(s.compare("mushroom") == 0){ curr_token = MULTIPLY;}
@@ -84,8 +85,8 @@ class Scanner {
         
 
         }    
-    public:
-        Scanner(string f) {
+  //  public:
+        Scanner::Scanner(string f) {
             // use filename argument 'f' to open the file, read characters as needed, and eventually close
             // the file stream
 
@@ -108,12 +109,12 @@ class Scanner {
             // if we cannot find the specified file, gracefully return an error and exit
         }
 
-        simple current_token() {
+        simple Scanner::current_token() {
             // all you have to do here is return the currently stored token without going to the next one
             return curr_token;
         }
 
-        void next_token() {
+        void Scanner::next_token() {
             // find the next available token in the scanning stream, covert it into a token, store it
             // if a character is an invalid symbol, throw an error
             // NOTE: this will be your longest method!
@@ -166,7 +167,7 @@ class Scanner {
             }
         }
 
-        string get_name() {
+        string Scanner::get_name() {
             // if the current token is 'NAME', return the string value of the name, else throw an error
             if (curr_token == NAME) {
                 return curr_name;
@@ -176,7 +177,7 @@ class Scanner {
             return 0;
         }
 
-        int get_number() {
+        int Scanner::get_number() {
             // if the current token is 'NUMBER', return the int value of the number, else throw an error
             int result = 0; 
             if(curr_token == NUMBER){
@@ -187,6 +188,6 @@ class Scanner {
             }   
             return result;
         }
-};
+//};
 
-#endif
+//#endif

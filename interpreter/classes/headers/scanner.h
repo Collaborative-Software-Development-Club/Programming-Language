@@ -13,11 +13,11 @@ class Scanner {
         int curr_number; // the int value of the most recent (or current) 'NUMBER' token
         std::string curr_name; // the string value of the most recent (or current) 'NAME' token
 
-        bool is_number(std::string s);
-        bool is_letter(std::string s);
-        bool is_symbol(std::string s);
-        void symbol_check(std::string s);
-        bool keyword_check(std::string s);
+        bool isNumber(std::string s);
+        bool isLetter(std::string s);
+        bool isSymbol(std::string s);
+        bool checkSyntax(std::string s);
+        bool checkKeyword(std::string s);
 
     public:
         // Constructor to initialize the Scanner with a file

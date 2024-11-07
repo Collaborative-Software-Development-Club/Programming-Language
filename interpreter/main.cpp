@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
-#include "scanner.cpp"
-#include "simple.cpp"
-#include "parser.cpp"
 #include "classes/headers/globals.h"
+#include "classes/headers/scanner.h"
+#include "simple.cpp"
+#include "classes/headers/parser.h"
 using namespace std;
 
 // Helper function to convert token to string
@@ -42,25 +42,11 @@ int main(int argc, char* argv[]) {
     if (argc >= 0) {
         
         //DEBUG: 
-        char str[] = "test2.txt";
+        //char str[] = "test2.txt";
 
-        Scanner s (str);
-        s.next_token();
-        while (s.current_token() != EOS) {
-            cout << tokenToString(s.current_token()) << endl;
-            if (s.current_token() == NAME) {
-                cout << s.get_name() << endl;
-            }
-            s.next_token();
-        }
-        
-
-        global_parser.initialize_parser(str);
+        global_parser.initialize_parser(argv[1]);
         global_parser.parse_all();
         global_parser.print_all();
-
-
-
 
 
         return 0;
