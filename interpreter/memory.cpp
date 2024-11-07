@@ -33,6 +33,7 @@ void Memory::set_num(std::string n, int val) {
         }
         if (!found) {
             auto curr = mem.top();
+            std::cout << "---" << val << std::endl;
             curr[n] = val;
         }
     }
