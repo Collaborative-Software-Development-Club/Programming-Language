@@ -3,7 +3,6 @@
 #include "headers/globals.h"
 #include <iostream>
 #include <memory>
-
 void Declare::parse() {
     dm = std::make_unique<DeclareNum>();
     dm->parse();

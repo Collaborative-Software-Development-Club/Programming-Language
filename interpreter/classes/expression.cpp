@@ -3,7 +3,6 @@
 #include "headers/globals.h"
 #include <iostream>
 #include <memory>
-
 void Expression::parse() {
     term = std::make_unique<Term>();
     term->parse();

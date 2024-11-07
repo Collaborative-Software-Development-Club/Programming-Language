@@ -5,6 +5,7 @@
 #include <memory>
 //<term> ::= <factor> | <factor> MULTIPLY <term> | <factor> DIVIDE <term>
 
+
 void Term::parse() {
     factor = std::make_unique<Factor>();
     term2 = std::make_unique<Term>();

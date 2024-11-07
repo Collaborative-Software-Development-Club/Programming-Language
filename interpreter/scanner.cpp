@@ -125,7 +125,7 @@ class Scanner {
             return curr_token;
         }
 
-        int is_num(string token){
+        int ber(string token){
             bool isOk = true;
             string numbers = "0123456789";
                 for(char c : token){

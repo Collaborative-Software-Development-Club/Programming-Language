@@ -3,7 +3,6 @@
 #include "headers/globals.h"
 #include <iostream>
 #include <memory>
-
 void Loop::parse() {
     condition = std::make_unique<Condition>();
     statementSeq = std::make_unique<StatementSeq>();

@@ -13,11 +13,11 @@ class Scanner {
         int curr_number; // the int value of the most recent (or current) 'NUMBER' token
         std::string curr_name; // the string value of the most recent (or current) 'NAME' token
 
-        bool is_number(std::string s);
-        bool is_letter(std::string s);
-        bool is_symbol(std::string s);
-        void symbol_check(std::string s);
-        bool keyword_check(std::string s);
+        //bool is_number(std::string s);
+        //bool is_letter(std::string s);
+        //bool is_symbol(std::string s);
+        //void symbol_check(std::string s);
+        //bool keyword_check(std::string s);
 
     public:
         // Constructor to initialize the Scanner with a file
@@ -28,6 +28,8 @@ class Scanner {
 
         // Advances to the next token in the stream
         void next_token();
+
+        int is_num(std::string t);
 
         // Returns the name if the current token is 'NAME', otherwise throws an error
         std::string get_name();

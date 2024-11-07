@@ -3,7 +3,6 @@
 #include "headers/globals.h"
 #include <iostream>
 #include <memory>
-
 void Condition::parse() {
     compare = std::make_unique<Compare>();
     cond2 = std::make_unique<Condition>();

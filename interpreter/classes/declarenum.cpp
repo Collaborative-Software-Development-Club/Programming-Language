@@ -2,6 +2,7 @@
 #include "../simple.cpp"
 #include "headers/globals.h"
 #include <iostream>
+#include <memory>
 
 void DeclareNum::parse() {
     simple currentToken = global_parser.token_stream.value().current_token();

@@ -3,7 +3,6 @@
 #include "headers/globals.h"
 #include <iostream>
 #include <memory>
-
 void Statement::parse() {
     assign = std::make_unique<Assign>();
     ifBlock = std::make_unique<If>();

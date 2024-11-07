@@ -5,7 +5,6 @@
 #include <memory>
 //<factor> ::= NAME | NUMBER | LPAREN <expression> RPAREN
 
-
 void Factor::parse() {
     expression = std::make_unique<Expression>();
     

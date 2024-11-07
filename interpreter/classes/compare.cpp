@@ -3,7 +3,6 @@
 #include "headers/globals.h"
 #include <iostream>
 #include <memory>
-
 void Compare::parse() {
     expression = std::make_unique<Expression>();
     expression2 = std::make_unique<Expression>();
