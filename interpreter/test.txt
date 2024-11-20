@@ -1,5 +1,10 @@
 program quinton {
     num x;
     x = 5;
-    print(x);
+    while 0 < x {
+        num y;
+        y = 3 + x;
+        print(x * y);
+        x = x - 1;
+    }
 }

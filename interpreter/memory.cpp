@@ -15,57 +15,68 @@ void Memory::demake_scope() {
 }
 
 void Memory::set_num(std::string n, int val) {
-    if (Memory::mem.size() > 0) {
+    if (!Memory::mem.empty()) {
         std::stack<std::map<std::string, int>> temp;
         bool found = false;
+
+        // Traverse the stack
         while (!mem.empty()) {
-            auto curr = mem.top();
+            auto curr = mem.top(); // Copy to preserve stack structure
             mem.pop();
+
             if (curr.find(n) != curr.end()) {
                 curr[n] = val;
                 found = true;
             }
             temp.push(curr);
         }
+
+        // Rebuild the original stack
         while (!temp.empty()) {
             mem.push(temp.top());
             temp.pop();
         }
+
+        // If not found, add to the top scope
         if (!found) {
-            auto curr = mem.top();
-            std::cout << "---" << val << std::endl;
-            curr[n] = val;
+            mem.top()[n] = val; // Directly modify the top map
         }
+    } else {
+        std::cerr << "ERROR: No scope available to set value." << std::endl;
+        exit(-1);
     }
 }
 
 int Memory::get_num(std::string n) {
-    int val = 0;
-    bool found = false;
-    std::cout << mem.size() << std::endl;
-    if (Memory::mem.size() > 0) {
-        std::stack<std::map<std::string, int>> temp;
-        while (!mem.empty()) {
-            auto curr = mem.top();
-            mem.pop();
-            for (const auto& pair : curr) {
-                std::cout << "Key: " << pair.first << ", Value: " << pair.second << std::endl;
-            }
-
-            if (curr.find(n) != curr.end()) {
-                val = curr[n];
-                found = true;
-            }
-            temp.push(curr);
-        }
-        while (!temp.empty()) {
-            mem.push(temp.top());
-            temp.pop();
-        }
-    }
-    if (found) return val;
-    else {
-        std::cerr << "ERROR: Key not found!" << std::endl;
+    if (Memory::mem.empty()) {
+        std::cerr << "ERROR: No scope available to retrieve value." << std::endl;
         exit(-1);
     }
+
+    std::stack<std::map<std::string, int>> temp;
+    int val = 0;
+    bool found = false;
+
+    // Traverse the stack
+    while (!mem.empty()) {
+        auto curr = mem.top(); // Copy to preserve stack structure
+        mem.pop();
+
+        if (curr.find(n) != curr.end()) {
+            val = curr[n];
+            found = true;
+        }
+        temp.push(curr);
+    }
+
+    // Rebuild the original stack
+    while (!temp.empty()) {
+        mem.push(temp.top());
+        temp.pop();
+    }
+
+    if (found) return val;
+
+    std::cerr << "ERROR: Key not found!" << std::endl;
+    exit(-1);
 }
