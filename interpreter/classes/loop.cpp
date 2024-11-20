@@ -24,3 +24,11 @@ void Loop::print() {
     ss->print(); 
     std::cout << "}" << std::endl;
 }
+
+void Loop::execute() {
+    while (cnd->execute()) {
+        global_memory.make_scope();
+        ss->execute();
+        global_memory.demake_scope();
+    }
+}

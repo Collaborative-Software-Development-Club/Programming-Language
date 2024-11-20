@@ -31,3 +31,11 @@ void Compare::print() {
     }
     expr2->print();
 }
+
+bool Compare::execute(){
+    if(equal){
+        return expr1->execute() == expr2->execute();
+    }else{
+        return expr1->execute() < expr2->execute();
+    }
+}

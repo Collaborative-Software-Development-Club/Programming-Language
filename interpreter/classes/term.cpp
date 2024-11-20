@@ -32,3 +32,14 @@ void Term::print() {
         trm->print();
     }
 } 
+int Term::execute() {
+    if (termType == 0) {
+        return fcr->execute();
+    }
+    else if (termType == 1) {
+        return fcr->execute() * trm->execute();
+    }
+    else {
+        return fcr->execute() / trm->execute();
+    }
+}

@@ -41,3 +41,25 @@ void If::print() {
         std::cout << "}" << std::endl;
     }
 }
+
+void If::execute(){
+    if(!hasElse){
+        if(cnd->execute()){
+            global_memory.make_scope();
+            ss1->execute();
+            global_memory.demake_scope();
+        }
+    }
+    else{
+        if (cnd->execute()) {
+            global_memory.make_scope();
+            ss1->execute();
+            global_memory.demake_scope();
+        }
+        else {
+            global_memory.make_scope();
+            ss2->execute();
+            global_memory.demake_scope();
+        }
+     }
+}

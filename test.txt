@@ -1,3 +1,5 @@
 memorandum TestProgram {
     tally x.
+    x designate 5. 
+    etch (x).
 }

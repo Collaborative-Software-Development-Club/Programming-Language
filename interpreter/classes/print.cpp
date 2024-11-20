@@ -23,3 +23,6 @@ void Print::print() {
     expr->print();
     std::cout << ");" << std::endl;
 }
+void Print::execute() {
+    std::cout << expr->execute() << std::endl;
+}
