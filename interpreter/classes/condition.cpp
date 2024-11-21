@@ -68,6 +68,7 @@ bool Condition::execute(){
         return cpr->execute() && cnd->execute();
         break;
         default:
+        return false;
         break;
     }
 }

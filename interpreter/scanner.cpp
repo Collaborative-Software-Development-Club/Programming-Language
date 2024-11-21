@@ -132,7 +132,8 @@ using namespace std;
                     else if ((!isdigit(charStream[charPointer + 1]) && !isalpha(charStream[charPointer + 1])) || isSymbol(token_string)) { // check if we still have valid chars ahead
                         if (isNumber(token_string)) { // check if a full number
                             curr_token = NUMBER;
-                            curr_number = stoi(token_string);
+                            curr_number = stoi(std::string(token_string));
+                            //std::cout<< "hello "+ to_string(curr_number) << endl;
                             if (curr_number < 0 || curr_number > 1000000) { // check for too big
                                 cerr << "ERROR: NUMBER value too large!" << endl;
                                 exit(-1);
@@ -181,7 +182,7 @@ using namespace std;
             // if the current token is 'NUMBER', return the int value of the number, else throw an error
             int result = 0; 
             if(curr_token == NUMBER){
-                result = NUMBER;
+                result = curr_number;
             }else{
                 cerr << "PRITHEE, THOU HADST NOT SPECIFIED A VALID NUMERAL." << endl;
                 exit(-1);

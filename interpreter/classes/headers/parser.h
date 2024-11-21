@@ -25,6 +25,8 @@ public:
     // consume value
     void consume();
 
+    void execute_all();
+
     // get the int/num value
     int get_num();
 

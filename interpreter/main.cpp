@@ -46,7 +46,8 @@ int main(int argc, char* argv[]) {
 
         global_parser.initialize_parser(argv[1]);
         global_parser.parse_all();
-        global_parser.print_all();
+        //global_parser.print_all();
+        global_parser.execute_all();
 
 
         return 0;
